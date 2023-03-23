@@ -1,0 +1,1430 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="linux常见的目录命令, kevintam">
+    <meta name="description" content="常用的基本命令（必掌握）目录管理绝对路径和相对路径我们知道Linux的目录结构为树状结构，最顶级的目录为根目录 &amp;#x2F;。
+其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。
+在开始本教程前我们需要先知道什么是绝对路径与相">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>linux常见的目录命令 | kevintam</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">kevintam</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">kevintam</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/txh-rookie" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>txh-rookie
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/txh-rookie" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="txh-rookie" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">linux常见的目录命令</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                技术
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-04-17
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="常用的基本命令（必掌握）"><a href="#常用的基本命令（必掌握）" class="headerlink" title="常用的基本命令（必掌握）"></a>常用的基本命令（必掌握）</h3><h4 id="目录管理"><a href="#目录管理" class="headerlink" title="目录管理"></a>目录管理</h4><h4 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h4><p>我们知道Linux的目录结构为树状结构，最顶级的目录为根目录 &#x2F;。</p>
+<p>其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。</p>
+<p>在开始本教程前我们需要先知道什么是绝对路径与相对路径。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/d0c50-linux2bfile2bsystem2bhierarchy.jpg" alt="网图"></p>
+<p><strong>绝对路径：</strong></p>
+<p>路径的写法，由根目录 &#x2F; 写起，例如：&#x2F;usr&#x2F;share&#x2F;doc 这个目录。</p>
+<p><strong>相对路径：</strong></p>
+<p>路径的写法，不是由 &#x2F; 写起，例如由 &#x2F;usr&#x2F;share&#x2F;doc 要到 &#x2F;usr&#x2F;share&#x2F;man 底下时，可以写成：cd ..&#x2F;man 这就是相对路径的写法啦！</p>
+<h4 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h4><p>接下来我们就来看几个常见的处理目录的命令吧：</p>
+<ul>
+<li>ls: 列出目录</li>
+<li>cd：切换目录</li>
+<li>pwd：显示目前的目录</li>
+<li>mkdir：创建一个新的目录</li>
+<li>rmdir：删除一个空的目录</li>
+<li>cp: 复制文件或目录</li>
+<li>rm: 移除文件或目录</li>
+<li>mv: 移动文件与目录，或修改文件与目录的名称</li>
+</ul>
+<p>你可以使用 <em>man [命令]</em> 来查看各个命令的使用文档，如 ：man cp。</p>
+<h4 id="ls-（列出目录）"><a href="#ls-（列出目录）" class="headerlink" title="ls （列出目录）"></a>ls （列出目录）</h4><p>在Linux系统当中， ls 命令可能是最常被运行的。</p>
+<p>语法：</p>
+<pre><code>[root@www ~]# ls [-aAdfFhilnrRSt] 目录名称
+</code></pre>
+<p>选项与参数：</p>
+<ul>
+<li>-a ：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+</ul>
+<p>将目录下的所有文件列出来(含属性与隐藏档)</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@www ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls -al ~</span>
+</code></pre>
+<h4 id="cd-（切换目录）"><a href="#cd-（切换目录）" class="headerlink" title="cd （切换目录）"></a>cd （切换目录）</h4><p>cd是Change Directory的缩写，这是用来变换工作目录的命令。</p>
+<p>语法：</p>
+<pre><code>cd [相对路径或绝对路径]
+</code></pre>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 切换到用户目录下</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd home</span>
+<span class="token comment" spellcheck="true"># 使用 mkdir 命令创建 tom 目录</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir tom</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+kevintam  tom
+<span class="token comment" spellcheck="true"># 进入  tom 目录</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd tom/</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token comment" spellcheck="true"># 回到上一级</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd ..</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token comment" spellcheck="true"># 回到根目录</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd /</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token comment" spellcheck="true"># 表示回到自己的家目录，亦即是 /root 这个目录</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd ~</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+</code></pre>
+<h4 id="pwd-显示目前所在的目录"><a href="#pwd-显示目前所在的目录" class="headerlink" title="pwd ( 显示目前所在的目录 )"></a>pwd ( 显示目前所在的目录 )</h4><p>pwd 是 <strong>Print Working Directory</strong> 的缩写，也就是显示目前所在目录的命令。</p>
+<pre><code>[root@kuangshen kuangstudy]#pwd [-P]
+</code></pre>
+<p>选项与参数：**-P** ：显示出确实的路径，而非使用连接(link) 路径。</p>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 单纯显示出目前的工作目录</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/home/tom
+<span class="token comment" spellcheck="true"># 如果是链接，要显示真实地址，可以使用 -P参数</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd -P</span>
+/home/tom
+</code></pre>
+<h4 id="mkdir-（创建新目录）"><a href="#mkdir-（创建新目录）" class="headerlink" title="mkdir （创建新目录）"></a>mkdir （创建新目录）</h4><p>如果想要创建新的目录的话，那么就使用mkdir (make directory)吧。</p>
+<pre><code>mkdir [-mp] 目录名称
+</code></pre>
+<p>选项与参数：</p>
+<ul>
+<li>-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～</li>
+<li>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</li>
+</ul>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 进入我们用户目录下</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd home/</span>
+<span class="token comment" spellcheck="true"># 创建一个 test 文件夹</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir test</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+kevintam  <span class="token function">test</span>  tom
+<span class="token comment" spellcheck="true"># 创建多层级目录</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir test1/test2</span>
+mkdir: cannot create directory ‘test1/test2’: 
+No such <span class="token function">file</span> or directory<span class="token comment" spellcheck="true"># &lt;== 没办法直接创建此目录啊！</span>
+<span class="token comment" spellcheck="true"># 加了这个 -p 的选项，可以自行帮你创建多层目录！</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir -p  test1/test2</span>
+</code></pre>
+<h4 id="rmdir-删除空的目录"><a href="#rmdir-删除空的目录" class="headerlink" title="rmdir ( 删除空的目录 )"></a>rmdir ( 删除空的目录 )</h4><p>语法：</p>
+<pre><code>rmdir [-p] 目录名称
+</code></pre>
+<p>选项与参数：**-p ：**连同上一级『空的』目录也一起删除</p>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 看看有多少目录存在？</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls -l</span>
+total 16
+drwxr-xr-x 2 root root 4096 Feb 26 14:45 kevintam
+drwxr-xr-x 2 root root 4096 Feb 26 14:51 <span class="token function">test</span>
+drwxr-xr-x 3 root root 4096 Feb 26 14:51 test1
+drwxr-xr-x 2 root root 4096 Feb 26 14:46 tom
+<span class="token comment" spellcheck="true"># 可直接删除掉，没问题</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rmdir test</span>
+<span class="token comment" spellcheck="true"># 因为尚有内容，所以无法删除！</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rmdir test1/</span>
+rmdir: failed to remove ‘test1/’: Directory not empty
+<span class="token comment" spellcheck="true"># 利用 -p 这个选项，立刻就可以将 test1/test2/test3/test4 依次删除。</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rmdir -p test1/test2/</span>
+</code></pre>
+<p>注意：这个 rmdir 仅能删除空的目录，你可以使用 rm 命令来删除非空目录.</p>
+<h4 id="cp-复制文件或目录"><a href="#cp-复制文件或目录" class="headerlink" title="cp ( 复制文件或目录 )"></a>cp ( 复制文件或目录 )</h4><p>语法：</p>
+<pre><code>[root@www ~]# cp [-adfilprsu] 来源档(source) 目标档(destination)
+[root@www ~]# cp [options] source1 source2 source3 .... directory
+</code></pre>
+<p>选项与参数：</p>
+<ul>
+<li><strong>-a：</strong>相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)</li>
+<li><strong>-p：</strong>连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li><strong>-d：</strong>若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li><strong>-r：</strong>递归持续复制，用於目录的复制行为；(常用)</li>
+<li><strong>-f：</strong>为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li><strong>-i：</strong>若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li><strong>-l：</strong>进行硬式连结(hard link)的连结档创建，而非复制文件本身。</li>
+<li><strong>-s：</strong>复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li><strong>-u：</strong>若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 找一个有文件的目录，我这里找到 root目录</span>
+<span class="token punctuation">[</span>root@kuangshen home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd /root</span>
+<span class="token punctuation">[</span>root@kuangshen ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+install.sh
+<span class="token punctuation">[</span>root@kuangshen ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd /home</span>
+
+<span class="token comment" spellcheck="true"># 复制 home目录下的hello 到 opt目录下</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp -r hello /opt/</span>
+<span class="token comment" spellcheck="true"># 再次复制，加上-i参数，增加覆盖询问？</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp -r hello /opt/</span>
+cp: overwrite ‘/opt/hello/hello.txt’? y <span class="token comment" spellcheck="true"># n不覆盖，y为覆盖</span>
+<span class="token comment" spellcheck="true">#不提示是否覆盖</span>
+\cp -r /root/install.sh /home
+</code></pre>
+<h4 id="rm-移除文件或目录"><a href="#rm-移除文件或目录" class="headerlink" title="rm ( 移除文件或目录 )"></a>rm ( 移除文件或目录 )</h4><p>语法：</p>
+<pre><code>rm [-fir] 文件或目录
+</code></pre>
+<p>选项与参数：</p>
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 将刚刚在 cp 的实例中创建的 install.sh删除掉！</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rm -rf hello</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rm hello.txt </span>
+rm: remove regular empty <span class="token function">file</span> ‘hello.txt’? y
+<span class="token comment" spellcheck="true"># 如果加上 -i 的选项就会主动询问喔，避免你删除到错误的档名！</span>
+
+<span class="token comment" spellcheck="true"># 尽量不要在服务器上使用 rm -rf /</span>
+</code></pre>
+<h4 id="mv-移动文件与目录，或修改名称"><a href="#mv-移动文件与目录，或修改名称" class="headerlink" title="mv  ( 移动文件与目录，或修改名称 )"></a>mv  ( 移动文件与目录，或修改名称 )</h4><p>语法：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@www ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mv [-fiu] source destination</span>
+<span class="token punctuation">[</span>root@www ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mv [options] source1 source2 source3 .... directory</span>
+<span class="token comment" spellcheck="true">#如果是在一个目录下的移动就是重命名</span>
+</code></pre>
+<p>选项与参数：</p>
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<p>测试：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 复制一个文件到当前目录</span>
+<span class="token punctuation">[</span>root@kuangshen home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp /root/install.sh /home</span>
+
+<span class="token comment" spellcheck="true"># 创建一个文件夹 test</span>
+<span class="token punctuation">[</span>root@kuangshen home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir test</span>
+
+<span class="token comment" spellcheck="true"># 将复制过来的文件移动到我们创建的目录，并查看</span>
+<span class="token punctuation">[</span>root@kuangshen home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mv install.sh test</span>
+<span class="token punctuation">[</span>root@kuangshen home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+<span class="token function">test</span>
+<span class="token punctuation">[</span>root@kuangshen home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd test</span>
+<span class="token punctuation">[</span>root@kuangshen test<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+install.sh
+
+<span class="token comment" spellcheck="true"># 将文件夹重命名，然后再次查看！</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># touch cat</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mv cat pig</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+kevintam  pig  tom
+</code></pre>
+<h4 id="创建一个空的文件"><a href="#创建一个空的文件" class="headerlink" title="创建一个空的文件"></a>创建一个空的文件</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">touch</span> <span class="token punctuation">[</span>文件名称<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#指令</span>
+</code></pre>
+<p>测试</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@VM-0-17-centos kevintam<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># touch hello.java</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos kevintam<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+hello.java
+</code></pre>
+<h4 id="查看文件的内容"><a href="#查看文件的内容" class="headerlink" title="查看文件的内容"></a>查看文件的内容</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">cat</span> <span class="token comment" spellcheck="true">#查看文件的内容</span>
+-n <span class="token comment" spellcheck="true">#显示行号</span>
+<span class="token comment" spellcheck="true">#查看/etc/profile的文件 -n就是查看行号.</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat -n /etc/profile</span>
+<span class="token comment" spellcheck="true"># | more 管道命令 按回车键往下走 输入空格 会直接下一页</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat -n /etc/profile | more</span>
+</code></pre>
+<p>more指令是一个vi编辑的文本过滤器，他以全屏的方式按页显示内容</p>
+<p>more中常见的快捷键</p>
+<ul>
+<li>空格键: 往下翻一页</li>
+<li>enter ：往下走一段</li>
+<li>q：立刻离开</li>
+<li>ctrl+f：向下滚动一屏</li>
+<li>ctrl+b：返回上一屏</li>
+<li>&#x3D;：输出当前行号</li>
+<li>：f  输出当前的行号和文件名</li>
+</ul>
+<p>cat和more通常组合使用</p>
+<h4 id="less-指令"><a href="#less-指令" class="headerlink" title="less 指令"></a>less 指令</h4><p>less指令支持用来分屏查看文件内容。通常使用在大文件的查看</p>
+<p>常用指令：</p>
+<ul>
+<li>空格键:向下翻到一页</li>
+<li>q：离开less指令</li>
+<li>&#x2F;字符：查询字符</li>
+<li>[pagedown]：向下翻动一页</li>
+<li>[pageup]：向上翻动一页</li>
+</ul>
+<h4 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h4><p>输出内容到控制台</p>
+<pre class=" language-bash"><code class="language-bash">echo<span class="token punctuation">[</span>选项<span class="token punctuation">]</span> <span class="token punctuation">[</span>输出内容<span class="token punctuation">]</span>
+</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># echo $HOSTNAME</span>
+VM-0-17-centos
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># echo "hello world~~"</span>
+hello world~~
+</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">head</span>
+<span class="token comment" spellcheck="true">#文件的开头</span>
+<span class="token comment" spellcheck="true">#看5行的代码</span>
+<span class="token function">head</span> -n 5
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># head -n 5 /etc/profile</span>
+<span class="token comment" spellcheck="true"># /etc/profile</span>
+
+<span class="token comment" spellcheck="true"># System wide environment and startup programs, for login setup</span>
+<span class="token comment" spellcheck="true"># Functions and aliases go in /etc/bashrc</span>
+
+<span class="token function">tail</span>  -f<span class="token comment" spellcheck="true">#文件尾的内容 实时的监控文件</span>
+</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">></span>和<span class="token operator">>></span>指令
+<span class="token comment" spellcheck="true">#输出重定向和追加</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># echo "hello world" > data.txt #会覆盖该文件里的数据</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># echo "java" >> data.txt #在原数据的基础上会追加内容</span>
+</code></pre>
+<h4 id="查看当前日期"><a href="#查看当前日期" class="headerlink" title="查看当前日期"></a>查看当前日期</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">cal</span>
+<span class="token punctuation">[</span>root@VM-0-17-centos tom<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cal</span>
+     March 2021     
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+</code></pre>
+<h4 id="In指令"><a href="#In指令" class="headerlink" title="In指令"></a>In指令</h4><p>软链接也称为符号链接,类似于windows里的快捷方式,主要存放了链接其他文件的路径</p>
+<p>基本语法</p>
+<pre class=" language-shell"><code class="language-shell">in -s 原文件或目录(功能描述：给原文件创建一个软链接) 连接到的目录
+</code></pre>
+<p>引用案列</p>
+<p>案列1:在&#x2F;home目录下创建一个软链接myroot,连接到&#x2F;root目录</p>
+<p>案列2:删除软链接myroot</p>
+<pre class=" language-shell"><code class="language-shell">in -s /root /myroot
+rm /home/myroot #删除这个目录即可
+</code></pre>
+<h4 id="history"><a href="#history" class="headerlink" title="history"></a>history</h4><p>查看已执行过历史命令,也可以执行历史命令</p>
+<p>基本语法</p>
+<p>history (功能描述:查看已经执行过历史命令)</p>
+<pre class=" language-shell"><code class="language-shell">history
+</code></pre>
+<p>案列1:显示所有的历史命令</p>
+<pre class=" language-shell"><code class="language-shell">history
+</code></pre>
+<p>案列2:显示最近使用过的10个指令</p>
+<pre class=" language-shell"><code class="language-shell">history 10
+</code></pre>
+<p>案列3：执行历史编号为5的指令</p>
+<pre class=" language-shell"><code class="language-shell">!5
+</code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">kevintam</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2021/04/17/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E7%9B%AE%E5%BD%95%E5%91%BD%E4%BB%A4/">http://example.com/2021/04/17/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E7%9B%AE%E5%BD%95%E5%91%BD%E4%BB%A4/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">kevintam</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2021/04/18/%E8%B5%B0%E8%BF%9Blinux%E7%B3%BB%E7%BB%9F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="走进linux系统">
+                        
+                        <span class="card-title">走进linux系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Current&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/04/17/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E7%9B%AE%E5%BD%95%E5%91%BD%E4%BB%A4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="linux常见的目录命令">
+                        
+                        <span class="card-title">linux常见的目录命令</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: kevintam<br />'
+            + 'Author: kevintam<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">kevintam</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/txh-rookie" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=843808107" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 843808107" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
