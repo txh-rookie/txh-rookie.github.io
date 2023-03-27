@@ -4,10 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="进程管理, kevintam">
-    <meta name="description" content="进程管理（重点）基本介绍
-在 LINUX 中，每个执行的程序都称为一个进程。每一个进程都分配一个 ID 号(pid,进程号)。&amp;#x3D;&amp;gt;windows &amp;#x3D;&amp;gt; linux
-每个进程都可能以两种方式存在的。前台与后台，">
+    <meta name="keywords" content="注解, kevintam">
+    <meta name="description" content="1、基本概念注解为我们在代码中添加信息提供一种形式化的方法，我们可以在某个时刻非常方便的使用这些数据。将的通俗一点，就是为这个方法增加的说明或功能。例如：@Overvide这个注解就用来说明这个方式重写父类的。
+2、JDK提供的注解Java">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>进程管理 | kevintam</title>
+    <title>注解 | kevintam</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -336,12 +335,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">进程管理</h1>
+                    <h1 class="description center-align post-title">注解</h1>
                 </div>
             </div>
         </div>
@@ -365,8 +364,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
                     </div>
@@ -411,77 +410,216 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="进程管理（重点）"><a href="#进程管理（重点）" class="headerlink" title="进程管理（重点）"></a>进程管理（重点）</h3><h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><ol>
-<li>在 LINUX 中，每个执行的程序都称为一个进程。每一个进程都分配一个 ID 号(pid,进程号)。&#x3D;&gt;windows &#x3D;&gt; linux</li>
-<li>每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。</li>
-<li>一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到关机才才结束。</li>
-</ol>
-<h4 id="显示系统执行的进程"><a href="#显示系统执行的进程" class="headerlink" title="显示系统执行的进程"></a>显示系统执行的进程</h4><p>ps 命令是用来查看目前系统中，有哪些正在执行，以及它们执行的状况。可以不加任何参数.</p>
-<p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/image-20210514173753530.png" alt="image-20210514173753530"></p>
-<h4 id="ps-详解"><a href="#ps-详解" class="headerlink" title="ps 详解"></a>ps 详解</h4><ol>
-<li>指令：ps –aux|grep xxx ，比如我看看有没有 sshd 服务</li>
-<li>指令说明<ul>
-<li>System V 展示风格</li>
-<li>USER：用户名称</li>
-<li>PID：进程号</li>
-<li>%CPU：进程占用 CPU 的百分比</li>
-<li>%MEM：进程占用物理内存的百分比</li>
-<li>VSZ：进程占用的虚拟内存大小（单位：KB）</li>
-<li>RSS：进程占用的物理内存大小（单位：KB）</li>
-<li>TT：终端名称,缩写 .</li>
-<li>STAT：进程状态，其中 S-睡眠，s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先级更低的优先级，R-正在运行，D-短期等待，Z-僵死进程，T-被跟踪或者被停止等等</li>
-<li>STARTED：进程的启动时间</li>
-<li>TIME： CPU 时间，即进程使用 CPU 的总时间</li>
-<li>COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</li>
+                <h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><p>注解为我们在代码中添加信息提供一种形式化的方法，我们可以在某个时刻非常方便的使用这些数据。将的通俗一点，就是为这个方法增加的说明或功能。例如：@Overvide这个注解就用来说明这个方式重写父类的。</p>
+<h2 id="2、JDK提供的注解"><a href="#2、JDK提供的注解" class="headerlink" title="2、JDK提供的注解"></a>2、JDK提供的注解</h2><p>Java目前内置了三种注解@Override、@Deprecated、@SuppressWarnnings</p>
+<ul>
+<li>@Override：用于标识方法，标识该方法属于重写父类的方法</li>
 </ul>
-</li>
-</ol>
-<h4 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h4><p>要求：以全格式显示当前所有的进程，查看进程的父进程。 查看 sshd 的父进程信息</p>
-<pre class=" language-linux"><code class="language-linux">ps -ef 是以全格式显示当前所有的进程
--e 显示所有进程。-f 全格式
-ps -ef|grep sshd
-root       942     1  0 Mar16 ?        00:02:16 /usr/sbin/sshd -D
-root     17779   942  0 17:06 ?        00:00:00 sshd: root@pts/1
-root     27343   942  0 17:56 ?        00:00:00 sshd: root [priv]
-sshd     27344 27343  0 17:56 ?        00:00:00 sshd: root [net]
-是 BSD 风格
-UID：用户 ID
-PID：进程 ID
-PPID：父进程 ID
-C：CPU 用于计算执行优先级的因子。数值越大，表明进程是 CPU 密集型运算，执行优先级会降低；数值越小，表
-明进程是 I/O 密集型运算，执行优先级会提高
-STIME：进程启动的时间
-TTY：完整的终端名称
-TIME：CPU 时间
-CMD：启动进程所用的命令和参数
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>SOURCE<span class="token punctuation">)</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Override</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<h4 id="终止进程-kill-和-killall"><a href="#终止进程-kill-和-killall" class="headerlink" title="终止进程 kill 和 killall"></a>终止进程 kill 和 killall</h4><blockquote>
-<p>若是某个进程执行一半需要停止时，或是已消了很大的系统资源时，此时可以考虑停止该进程。使用 kill 命令来完成此项任务</p>
-</blockquote>
-<p>基本语法:</p>
-<pre class=" language-linux"><code class="language-linux">kill [选项] 进程号（功能描述：通过进程号杀死/终止进程）
-killall 进程名称（功能描述：通过进程名称杀死进程，也支持通配符，这在系统因负载过大而变得很慢时很有用）
+<ul>
+<li>@Deprecated：用于标识方法或类，标识该类或方法已过时，建议不要使用</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Documented</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token punctuation">{</span>CONSTRUCTOR<span class="token punctuation">,</span> FIELD<span class="token punctuation">,</span> LOCAL_VARIABLE<span class="token punctuation">,</span> METHOD<span class="token punctuation">,</span> PACKAGE<span class="token punctuation">,</span> PARAMETER<span class="token punctuation">,</span> TYPE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Deprecated</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>常用选项:</p>
-<p>-9 :表示强迫进程立即停止</p>
-<p>应用案例:</p>
-<p>案例 1. ：踢掉某个非法登录用户</p>
-<pre class=" language-linux"><code class="language-linux">kill 进程号 , 比如 kill 11421
+<ul>
+<li>@SuppressWarnnings:用于有选择的关闭编译器对类、方法、成员变量、变量初始化的警告</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token function">Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>TYPE<span class="token punctuation">,</span> FIELD<span class="token punctuation">,</span> METHOD<span class="token punctuation">,</span> PARAMETER<span class="token punctuation">,</span> CONSTRUCTOR<span class="token punctuation">,</span> LOCAL_VARIABLE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>SOURCE<span class="token punctuation">)</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">SuppressWarnings</span> <span class="token punctuation">{</span>
+    String<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>案例 2: 终止远程登录服务 sshd, 在适当时候再次重启 sshd 服务</p>
-<pre class=" language-linux"><code class="language-linux">kill sshd 对应的进程号; /bin/systemctl start sshd.service
+<h2 id="3、元注解"><a href="#3、元注解" class="headerlink" title="3、元注解"></a>3、元注解</h2><p>Java提供了四种元注解，即修饰注解的注解。观察上面源码可以发现三种，即：@Target、@Retention、@Document、@Inherited。主要作用如下：</p>
+<p><img src="https://img-blog.csdn.net/20180621194031710?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hleXJpYW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<h2 id="4、如何自定义注解"><a href="#4、如何自定义注解" class="headerlink" title="4、如何自定义注解"></a>4、如何自定义注解</h2><p>使用@interface定义注解，会自动继承java.lang.annotation.Annotation接口，类似于类自动继承Object一样。注解中的每个方法表示一个配置参数，返回类型即是参数类型，可以通过default标识参数默认值。定义方式如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * target表示该注解能标注的地方
+ */</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>FIELD<span class="token punctuation">,</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">CustomAnnotation</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//每一个方法就表示我们的配置参数,返回类型即是参数类型</span>
+<span class="token comment" spellcheck="true">//    可以通过default标识参数默认值</span>
+    String <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">"默认值"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>案例 3: 终止多个 gedit , 演示 killall gedit</p>
-<pre class=" language-linux"><code class="language-linux">通过进程的名字来终止进程
+<h2 id="5、注解中的参数类型"><a href="#5、注解中的参数类型" class="headerlink" title="5、注解中的参数类型"></a>5、注解中的参数类型</h2><p>注解中的参数只支持如下类型：</p>
+<ul>
+<li>所有的基本类型：byte、short、char、int、long、float、double</li>
+<li>String类型</li>
+<li>Class类型</li>
+<li>enum类型</li>
+<li>Annotation类型</li>
+<li>以上类型的数组</li>
+</ul>
+<p>如果定义其他类型的参数编译器会报错。</p>
+<h2 id="6、使用注解的注意点"><a href="#6、使用注解的注意点" class="headerlink" title="6、使用注解的注意点"></a>6、使用注解的注意点</h2><ul>
+<li>如果注解只有一个参数，最好取名value，这样在使用的时候可以直接指定属性值。例如：@Test(“hello”)</li>
+<li>只能使用public和默认权限修饰符修饰参数</li>
+<li>参数默认值：注解参数必须有确定的值。要么在定义的时候给默认值；要么在使用注解的时候指定参数值。</li>
+</ul>
+<h2 id="7、注解处理器"><a href="#7、注解处理器" class="headerlink" title="7、注解处理器"></a>7、注解处理器</h2><p>如果没有读取注解的方法，那么该注解就没有任何意义。使用注解的过程中，注解处理器是必不可少的，Java里反射机制，完成对注解的处理 。</p>
+<h4 id="7-1-注解处理类库"><a href="#7-1-注解处理类库" class="headerlink" title="7.1 注解处理类库:"></a>7.1 注解处理类库:</h4><p>Java通过反射机制获取类、方法、属性上的注解，因此java.lang.reflect提供AnnotationElement支持注解，主要方法如下：</p>
+<ul>
+<li>boolean is AnnotationPresent(Class&lt;?extends Annotation&gt; annotationClass)：判断该元素是否被annotationClass注解修饰</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//isAnnotationPresent：获取一下该注解是否标注在该类上</span>
+        <span class="token keyword">boolean</span> present <span class="token operator">=</span> Annotation<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAnnotationPresent</span><span class="token punctuation">(</span>CustomAnnotation<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>present<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>案例 4：强制杀掉一个终端, 指令 kill -9 bash 对应的进程号</p>
-<pre class=" language-linux"><code class="language-linux">kill -9 bash
+<ul>
+<li><T extends Annotation> T getAnnotation(Class<T> annotationClass)：获取该元素上annotationClass类型的注解，如果没有返回null</li>
+</ul>
+<pre class=" language-java"><code class="language-java">CustomAnnotation annotation <span class="token operator">=</span> AnnotationTest<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>CustomAnnotation<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>annotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="查看进程树-pstree"><a href="#查看进程树-pstree" class="headerlink" title="查看进程树 pstree"></a>查看进程树 pstree</h4><p>基本语法</p>
-<pre class=" language-linux"><code class="language-linux">pstree [选项] ,可以更加直观的来看进程信息
+<ul>
+<li>Annotation[] getAnnotations()：返回该元素上所有的注解</li>
+</ul>
+<pre class=" language-java"><code class="language-java">Annotation<span class="token punctuation">[</span><span class="token punctuation">]</span> annotations <span class="token operator">=</span> CustomAnnotation<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getAnnotations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Annotation annotation <span class="token operator">:</span> annotations<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>annotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 </code></pre>
-<p>常用选项</p>
-<p>-p :显示进程的 PID<br>-u :显示进程的所属用户</p>
+<ul>
+<li><T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass)：返回该元素上指定类型所有的注解</li>
+</ul>
+<pre class=" language-java"><code class="language-java"> CustomAnnotation<span class="token punctuation">[</span><span class="token punctuation">]</span> annotationsByType <span class="token operator">=</span> AnnotationTest<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getAnnotationsByType</span><span class="token punctuation">(</span>CustomAnnotation<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>CustomAnnotation customAnnotation <span class="token operator">:</span> annotationsByType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>customAnnotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>Annotation[] getDeclaredAnnotations()：返回直接修饰该元素的所有注解</li>
+</ul>
+<pre class=" language-java"><code class="language-java">  Annotation<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredAnnotations <span class="token operator">=</span> AnnotationTest<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredAnnotations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Annotation declaredAnnotation <span class="token operator">:</span> declaredAnnotations<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>declaredAnnotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><T extends Annotation> T[] getDeclaredAnnotationsByType(Class<T> annotationClass)：返回直接修饰该元素的所有注解</li>
+</ul>
+<pre class=" language-java"><code class="language-java"> CustomAnnotation<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredAnnotationsByType <span class="token operator">=</span> AnnotationTest<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredAnnotationsByType</span><span class="token punctuation">(</span>CustomAnnotation<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>CustomAnnotation customAnnotation <span class="token operator">:</span> declaredAnnotationsByType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>customAnnotation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解:"></a>自定义注解:</h3><p>通过注解进行赋值和通过注解进行校验。</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 性别赋值
+ * @author zzs
+ */</span>
+<span class="token annotation punctuation">@Documented</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>FIELD<span class="token punctuation">,</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Inherited</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">InitSex</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * sex enum
+     * @author zzs
+     */</span>
+    <span class="token keyword">enum</span> SEX_TYPE <span class="token punctuation">{</span>MAN<span class="token punctuation">,</span> WOMAN<span class="token punctuation">}</span>
+    SEX_TYPE <span class="token function">sex</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> SEX_TYPE<span class="token punctuation">.</span>MAN<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>年龄校验:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>kevintam<span class="token punctuation">.</span>study<span class="token punctuation">.</span>annotation<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author kevintam
+ * @version 1.0
+ * @title
+ * @description
+ * @createDate 2023/3/27
+ */</span>
+<span class="token annotation punctuation">@Documented</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>FIELD<span class="token punctuation">,</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Inherited</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">ValidateAge</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * 最小值
+     * @return
+     */</span>
+    <span class="token keyword">int</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token number">18</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 最大值
+     * @return
+     */</span>
+    <span class="token keyword">int</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token number">99</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 默认值
+     * @return
+     */</span>
+    <span class="token keyword">int</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>反射实现注解:</p>
+<pre class=" language-java"><code class="language-java"> Student student <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">intiStudent</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 年龄为0，校验为通过情况</span>
+        <span class="token keyword">boolean</span> checkResult <span class="token operator">=</span> <span class="token function">checkStudent</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printResult</span><span class="token punctuation">(</span>checkResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 重新设置年龄，校验通过情况</span>
+        student<span class="token punctuation">.</span><span class="token function">setAge</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        checkResult <span class="token operator">=</span> <span class="token function">checkStudent</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printResult</span><span class="token punctuation">(</span>checkResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">intiStudent</span><span class="token punctuation">(</span>Student student<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获取Student类中所有的属性(getFields无法获得private属性)</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> Student<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 遍历所有属性</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field field <span class="token operator">:</span> fields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 如果属性上有此注解，则进行赋值操作</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>field<span class="token punctuation">.</span><span class="token function">isAnnotationPresent</span><span class="token punctuation">(</span>InitSex<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                InitSex init <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>InitSex<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">// 设置属性的性别值</span>
+                field<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>student<span class="token punctuation">,</span> init<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"完成属性值的修改，修改值为:"</span> <span class="token operator">+</span> init<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">checkStudent</span><span class="token punctuation">(</span>Student student<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获取Student类中所有的属性(getFields无法获得private属性)</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> Student<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> result <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 遍历所有属性</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field field <span class="token operator">:</span> fields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 如果属性上有此注解，则进行赋值操作</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>field<span class="token punctuation">.</span><span class="token function">isAnnotationPresent</span><span class="token punctuation">(</span>ValidateAge<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                ValidateAge validateAge <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>ValidateAge<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>age <span class="token operator">&lt;</span> validateAge<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> age <span class="token operator">></span> validateAge<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    result <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"年龄值不符合条件"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printResult</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> checkResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>checkResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"校验通过"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"校验未通过"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
 
                 
             </div>
@@ -508,7 +646,7 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/05/14/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">http://example.com/2021/05/14/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</a>
+                    <a href="http://example.com/2021/05/14/%E6%B3%A8%E8%A7%A3/">http://example.com/2021/05/14/%E6%B3%A8%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -546,8 +684,8 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
                         </div>
@@ -630,13 +768,13 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/05/14/%E6%B3%A8%E8%A7%A3/">
+                <a href="/2021/06/09/linux-%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="注解">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="linux-服务管理">
                         
-                        <span class="card-title">注解</span>
+                        <span class="card-title">linux-服务管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -647,7 +785,7 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-09
                         </span>
                         <span class="publish-author">
                             
@@ -664,8 +802,8 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
@@ -679,13 +817,13 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/27/linux%E7%BB%84%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+                <a href="/2021/05/14/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="linux组的介绍">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="进程管理">
                         
-                        <span class="card-title">linux组的介绍</span>
+                        <span class="card-title">进程管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -696,7 +834,7 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-14
                             </span>
                         <span class="publish-author">
                             
