@@ -4,9 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="linux-服务管理, kevintam">
-    <meta name="description" content="linux服务管理介绍:服务(service) 本质就是进程，但是是运行在后台的，通常都会监听某个端口，等待其它程序的请求，比如(mysqld , sshd防火墙等)，因此我们又称为守护进程，是 Linux 中非常重要的知识点。
-servi">
+    <meta name="keywords" content="Arthas, kevintam">
+    <meta name="description" content="Arthas当我们系统遇到JVM或者内存溢出等问题的时候，如何对我们的程序进行有效的监控和排查，就发现了几个比较常用的工具，比如JDK自带的 jconsole、jvisualvm还有一个最好用的工具——jprofiler，但是这个是收费的，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@ servi">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>linux-服务管理 | kevintam</title>
+    <title>Arthas | kevintam</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -335,12 +334,12 @@ servi">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux-服务管理</h1>
+                    <h1 class="description center-align post-title">Arthas</h1>
                 </div>
             </div>
         </div>
@@ -364,8 +363,8 @@ servi">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/jvm/">
+                                <span class="chip bg-color">jvm</span>
                             </a>
                         
                     </div>
@@ -389,7 +388,7 @@ servi">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-06-09
+                    2021-05-14
                 </div>
                 
 
@@ -410,68 +409,171 @@ servi">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="linux服务管理"><a href="#linux服务管理" class="headerlink" title="linux服务管理"></a>linux服务管理</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍:"></a>介绍:</h4><p>服务(service) 本质就是进程，但是是运行在后台的，通常都会监听某个端口，等待其它程序的请求，比如(mysqld , sshd防火墙等)，因此我们又称为守护进程，是 Linux 中非常重要的知识点。</p>
-<h4 id="service-管理指令"><a href="#service-管理指令" class="headerlink" title="service 管理指令"></a>service 管理指令</h4><ol>
-<li>service 服务名 [start | stop | restart | reload | status]</li>
-<li>在 CentOS7.0 后 很多服务不再使用 service ,而是 systemctl</li>
-<li>service 指令管理的服务在 &#x2F;etc&#x2F;init.d 查看</li>
-</ol>
-<h4 id="查看服务名"><a href="#查看服务名" class="headerlink" title="查看服务名:"></a>查看服务名:</h4><p><strong>使用 setup -&gt; 系统服务 就可以看到全部。（作用可以在setup中更改开机即启动的服务）</strong></p>
-<h4 id="服务的运行级别-runlevel"><a href="#服务的运行级别-runlevel" class="headerlink" title="服务的运行级别(runlevel):"></a>服务的运行级别(runlevel):</h4><p>Linux 系统有 7 种运行级别(runlevel)：常用的是 级别 3 和 和 5</p>
-<p>Linux 系统有 7 种运行级别(runlevel)：常用的是 级别 3 和 和 5<br>运行级别 0：系统停机状态，系统默认运行级别不能设为 0，否则不能正常启动<br>运行级别 1：单用户工作状态，root 权限，用于系统维护，禁止远程登陆<br>运行级别 2：多用户状态(没有 NFS)，不支持网络<br>运行级别 3：完全的多用户状态(有 NFS)，无界面，登陆后进入控制台命令行模式<br>运行级别 4：系统未使用，保留<br>运行级别 5：X11 控制台，登陆后进入图形 GUI 模式<br>运行级别 6：系统正常关闭并重启，默认运行级别不能设为 6，否则不能正常启动</p>
-<h4 id="CentOS7-后运行级别说明"><a href="#CentOS7-后运行级别说明" class="headerlink" title="CentOS7 后运行级别说明"></a>CentOS7 后运行级别说明</h4><p>在 &#x2F;etc&#x2F;initab进行了简化 ，如下:</p>
-<pre class=" language-linux"><code class="language-linux">multi-user.target: analogous to runlevel 3
-graphical.target: analogous to runlevel 5
-#查看当前级别
-systemctl get-default
-#修改运行级别
-systemctl set-default TARGET.target
-</code></pre>
-<h4 id="chkconfig-指令"><a href="#chkconfig-指令" class="headerlink" title="chkconfig 指令"></a>chkconfig 指令</h4><p>通过 chkconfig 命令可以给服务的各个运行级别设置自 启动&#x2F;关闭chkconfig 指令管理的服务在 &#x2F;etc&#x2F;init.d 查看<br>注意: Centos7.0 后，很多服务使用 systemctl 管理.</p>
-<p>chkconfig 基本语法</p>
-<pre class=" language-linux"><code class="language-linux">查看服务 chkconfig --list [| grep xxx]
-chkconfig 服务名 --list
-chkconfig --level 5 服务名 on/off
-</code></pre>
-<p>案例演示 : 对 network 服务 进行各种操作, 把 network 在 3 运行级别,关闭自启动</p>
-<pre class=" language-linux"><code class="language-linux">chkconfig --level 3 network off
-chkconfig --level 3 network on
-</code></pre>
-<p>使用细节<br>chkconfig 重新设置服务后自启动或关闭，需要重启机器 reboot 生效.</p>
-<h4 id="systemctl-管理指令-重点"><a href="#systemctl-管理指令-重点" class="headerlink" title="systemctl 管理指令(重点)"></a>systemctl 管理指令(重点)</h4><p>基本语法：</p>
-<pre class=" language-linux"><code class="language-linux">systemctl [start | stop | restart | status] 服务名
-systemctl 指令管理的服务在 /usr/lib/systemd/system 查看
-</code></pre>
-<p> systemctl 设置服务的自启动状态</p>
-<pre class=" language-bash"><code class="language-bash">systemctl list-unit-files <span class="token punctuation">[</span> <span class="token operator">|</span> <span class="token function">grep</span> 服务名<span class="token punctuation">]</span> <span class="token punctuation">(</span>查看服务开机启动状态, <span class="token function">grep</span> 可以进行过滤<span class="token punctuation">)</span>
-systemctl <span class="token function">enable</span> 服务名 <span class="token punctuation">(</span>设置服务开机启动<span class="token punctuation">)</span>
-systemctl disable 服务名 <span class="token punctuation">(</span>关闭服务开机启动<span class="token punctuation">)</span>
-systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某个服务是否是自启动的<span class="token punctuation">)</span>
-</code></pre>
-<p>应用案列:</p>
-<p>查看当前防火墙的状况，关闭防火墙和重启防火墙。&#x3D;&gt; firewalld.service<br>systemctl status firewalld; systemctl stop firewalld; systemctl start firewalld</p>
-<h4 id="打开或者关闭指定端口-重点"><a href="#打开或者关闭指定端口-重点" class="headerlink" title="打开或者关闭指定端口(重点)"></a>打开或者关闭指定端口(重点)</h4><p>   在真正的生产环境，往往需要将防火墙打开，但问题来了，如果我们把防火墙打开，那么外部请求数据包就不能跟服务器监听端口通讯。这时，需要打开指定的端口。比如 80、22、8080 等，这个又怎么做呢？</p>
-<p>示意图:</p>
-<p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/mall/service.png" alt="截图"></p>
-<p> <strong>firewall 指令:</strong></p>
+                <h1 id="Arthas"><a href="#Arthas" class="headerlink" title="Arthas"></a>Arthas</h1><p>当我们系统遇到JVM或者内存溢出等问题的时候，如何对我们的程序进行有效的监控和排查，就发现了几个比较常用的工具，比如JDK自带的 jconsole、jvisualvm还有一个最好用的工具——jprofiler，但是这个是收费的，或者除了很有钱的公司，一般很少人会用这个。</p>
+<p>因为这个工具都是具有图像界面。所有会存在一个缺点,都必须在服务器项目进程中配置相关的监控参数。然后工具通过远程连接到项目进程，获取相关的数据。这样就会带来一些不便，比如线上的环境的网络是隔离的，本地的监控工具根据连不上线上环境。并且JproFile这样的商业工具，是需要付费的。</p>
+<p>那么有没有一款工具不需要远程连接，也不需要配置监控参数，同时也提供了丰富的性能监控工具。就是我们的Arthas。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述:"></a>概述:</h2><p>Arthas 是Alibaba开源的Java诊断工具，采用命令行交互模式，提供了较为丰富的功能，主要还是他是免费里面的算是好用且功能比较强大的一个JVM排查的插件，在了解这个利器之后，发现还是挺好用的，而且支持的功能也比较全面，那么Arthas到底可以为我们做哪些事情呢？</p>
 <ol>
-<li>打开端口: firewall-cmd –permanent –add-port&#x3D;端口号&#x2F;协议</li>
-<li>关闭端口: firewall-cmd –permanent –remove-port&#x3D;端口号&#x2F;协议</li>
-<li>重新载入,才能生效 : firewall-cmd –reload</li>
-<li>查询端口是否开放: firewall-cmd –query-port&#x3D;端口&#x2F;协议</li>
+<li>提供性能看板，包括线程、cpu、内存等信息，并且会定时的刷新。</li>
+<li>根据各种条件查看线程快照。找出cpu占用率最高的n个线程</li>
+<li>输出jvm的各种信息，如gc算法、jdk版本、ClassPath等</li>
+<li>遇到问题无法在线上 debug，热部署加日志直接替换</li>
+<li>查看某个类的静态属性，也可以通过ognl语法执行一些语句</li>
+<li>查看已加载的类的详细信息，这个类从哪个jar包加载的，查看类的方法的信息</li>
+<li>dump 类的字节码到指定目录</li>
+<li>直接反编译指定的类</li>
+<li>快速定位应用的热点，生成火焰图</li>
+<li>可以监控到JVM的实时运行状态</li>
 </ol>
-<p>应用案例：</p>
-<ol>
-<li>启用防火墙， 测试 111 端口是否能 telnet , 不行</li>
-<li>开放 111 端口</li>
-</ol>
-<pre class=" language-linux"><code class="language-linux">firewall-cmd --permanent --add-port=111/tcp ; 需要 firewall-cmd --reload
+<p>以前，你碰到这些问题，解决的办法大多是，修改代码，重新上线。但是在大公司里，上线的流程是非常繁琐的，如果为了多加一行日志而重新发布版本，无疑是非常折腾人的。但是阿里巴巴开源的Arthas有了更为优雅的线上调试方法。</p>
+<p>Arthas 支持JDK6，同时可以在 <code>Linux/Mac/Windows</code>上运行，自动Tab 补全功能，更方便我们定位问题和诊断</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://arthas.gitee.io/download.html">https://arthas.gitee.io/download.html</a><br>你可以下载zip的包我下载的是arthas-packaging-3.5.0-bin.zip<br>或者通过命令去下载</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">wget</span> https://alibaba.github.io/arthas/arthas-boot.jar
 </code></pre>
-<ol start="3">
-<li>再次关闭 111 端口</li>
-</ol>
-<pre class=" language-linux"><code class="language-linux">firewall-cmd --permanent --remove-port=111/tcp ; 需要 firewall-cmd --reload
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>当我们下载好之后，我们直接通过命令启动就可以<code>java -jar arthas-boot.jar</code>，但是在此之前我们需要通过检测的代码来挂靠到Arthas上面</p>
+<p>1、启动一个java程序:</p>
+<pre class=" language-bash"><code class="language-bash">curl -O https://arthas.aliyun.com/math-game.jar
+java -jar math-game.jar
 </code></pre>
+<p>2、启动arthas</p>
+<p>在命令行下面执行:</p>
+<pre class=" language-bash"><code class="language-bash">curl -O https://arthas.aliyun.com/arthas-boot.jar
+java -jar arthas-boot.jar
+</code></pre>
+<ul>
+<li>执行该程序的用户需要和目标进程具有相同的权限。比如以<code>admin</code>用户来执行：<code>sudo su admin &amp;&amp; java -jar arthas-boot.jar</code> 或 <code>sudo -u admin -EH java -jar arthas-boot.jar</code>。</li>
+<li>如果 attach 不上目标进程，可以查看<code>~/logs/arthas/</code> 目录下的日志。</li>
+<li>如果下载速度比较慢，可以使用 aliyun 的镜像：<code>java -jar arthas-boot.jar --repo-mirror aliyun --use-http</code></li>
+<li><code>java -jar arthas-boot.jar -h</code> 打印更多参数信息。</li>
+</ul>
+<p>选择应用 java 进程：</p>
+<pre class=" language-java"><code class="language-java">$ $ java <span class="token operator">-</span>jar arthas<span class="token operator">-</span>boot<span class="token punctuation">.</span>jar
+<span class="token operator">*</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token number">35542</span>
+  <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token number">71560</span> math<span class="token operator">-</span>game<span class="token punctuation">.</span>jar
+</code></pre>
+<p><code>math-game</code>进程是第 2 个，则输入 2，再输入<code>回车/enter</code>。Arthas 会 attach 到目标进程上，并输出日志：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Try to attach process 71560
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> Attach process 71560 success.
+<span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> arthas-client connect 127.0.0.1 3658
+  ,---.  ,------. ,--------.,--.  ,--.  ,---.   ,---.
+ /  O  \ <span class="token operator">|</span>  .--. <span class="token string">''</span>--.  .--<span class="token string">'|  '</span>--<span class="token string">'  | /  O  \ '</span>   .-<span class="token string">'
+|  .-.  ||  '</span>--<span class="token string">'.'</span>   <span class="token operator">|</span>  <span class="token operator">|</span>   <span class="token operator">|</span>  .--.  <span class="token operator">||</span>  .-.  <span class="token operator">|</span><span class="token variable"><span class="token variable">`</span><span class="token keyword">.</span>  <span class="token variable">`</span></span>-.
+<span class="token operator">|</span>  <span class="token operator">|</span> <span class="token operator">|</span>  <span class="token operator">||</span>  <span class="token operator">|</span>\  \    <span class="token operator">|</span>  <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">||</span>  <span class="token operator">|</span> <span class="token operator">|</span>  <span class="token operator">|</span>.-<span class="token string">'    |
+`--'</span> `--<span class="token string">'`--'</span> <span class="token string">'--'</span>   `--<span class="token string">'   `--'</span>  `--<span class="token string">'`--'</span> `--<span class="token string">'`-----'</span>
+
+
+
+wiki       https://arthas.aliyun.com/doc                                        
+tutorials  https://arthas.aliyun.com/doc/arthas-tutorials.html                  
+version    3.6.7                                                                
+main_class                                                                      
+pid        1911825                                                              
+<span class="token function">time</span>       2023-03-29 23:38:43  
+</code></pre>
+<p>web浏览器的输入:</p>
+<p>ip:8563端口是固定的。</p>
+<p>查看日志: cat ~&#x2F;logs&#x2F;arthas&#x2F;arthas.log</p>
+<p>参看帮助:java -jar arts-boot.jar -h</p>
+<p>推出 quit exit</p>
+<h3 id="相关指令"><a href="#相关指令" class="headerlink" title="相关指令"></a>相关指令</h3><h4 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令:"></a>基础指令:</h4><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230329234640384.png" alt="image-20230329234640384" style="zoom:50%;" />
+
+<h4 id="JVM相关的指令"><a href="#JVM相关的指令" class="headerlink" title="JVM相关的指令:"></a>JVM相关的指令:</h4><p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230329235241681.png" alt="image-20230329235241681"></p>
+<h4 id="dashboard参数说明，如果不指定，会实时进行显示。"><a href="#dashboard参数说明，如果不指定，会实时进行显示。" class="headerlink" title="dashboard参数说明，如果不指定，会实时进行显示。"></a>dashboard参数说明，如果不指定，会实时进行显示。</h4><table>
+<thead>
+<tr>
+<th align="right">参数名称</th>
+<th align="left">参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">[i:]</td>
+<td align="left">刷新实时数据的时间间隔 (ms)，默认 5000ms</td>
+</tr>
+<tr>
+<td align="right">[n:]</td>
+<td align="left">刷新实时数据的次数</td>
+</tr>
+</tbody></table>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>arthas@1941640<span class="token punctuation">]</span>$ dashboard -i 1000 -n 4
+</code></pre>
+<p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330000051836.png" alt="image-20230330000051836"></p>
+<h4 id="Thread：查看当前线程信息，查看线程的堆栈"><a href="#Thread：查看当前线程信息，查看线程的堆栈" class="headerlink" title="Thread：查看当前线程信息，查看线程的堆栈"></a>Thread：查看当前线程信息，查看线程的堆栈</h4><table>
+<thead>
+<tr>
+<th align="right">参数名称</th>
+<th align="left">参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right"><em>id</em></td>
+<td align="left">线程 id</td>
+</tr>
+<tr>
+<td align="right">[n:]</td>
+<td align="left">指定最忙的前 N 个线程并打印堆栈</td>
+</tr>
+<tr>
+<td align="right">[b]</td>
+<td align="left">找出当前阻塞其他线程的线程</td>
+</tr>
+<tr>
+<td align="right">[i <code>&lt;value&gt;</code>]</td>
+<td align="left">指定 cpu 使用率统计的采样间隔，单位为毫秒，默认值为 200</td>
+</tr>
+<tr>
+<td align="right">[–all]</td>
+<td align="left">显示所有匹配的线程</td>
+</tr>
+</tbody></table>
+<p>这里的 cpu 使用率与 linux 命令<code>top -H -p &lt;pid&gt;</code> 的线程<code>%CPU</code>类似，一段采样间隔时间内，当前 JVM 里各个线程的增量 cpu 时间与采样间隔时间的比例。</p>
+<pre class=" language-bash"><code class="language-bash">thread -1 直接使用我们的线程id来进行查看
+thread -n 列出最忙的几个线程并打印堆栈
+thread -b 找出当前阻塞其他线程的线程
+</code></pre>
+<h4 id="sysprop-查看当前JVM的系统属性"><a href="#sysprop-查看当前JVM的系统属性" class="headerlink" title="sysprop:查看当前JVM的系统属性"></a>sysprop:查看当前JVM的系统属性</h4><p>了解一下即可。</p>
+<h4 id="heapdump"><a href="#heapdump" class="headerlink" title="heapdump:"></a>heapdump:</h4><p>dump java heap, 类似 jmap 命令的 heap dump 功能。</p>
+<p>dump 到指定文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>arthas@58205<span class="token punctuation">]</span>$ heapdump /tmp/dump.hprof
+Dumping heap to /tmp/dump.hprof<span class="token punctuation">..</span>.
+Heap dump <span class="token function">file</span> created
+</code></pre>
+<h3 id="class-x2F-classloader-相关"><a href="#class-x2F-classloader-相关" class="headerlink" title="class&#x2F;classloader 相关"></a>class&#x2F;classloader 相关</h3><p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330001049327.png" alt="image-20230330001049327"></p>
+<h4 id="sc-查看JVM以加载的类信息"><a href="#sc-查看JVM以加载的类信息" class="headerlink" title="sc:查看JVM以加载的类信息"></a>sc:查看JVM以加载的类信息</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>arthas@1941640<span class="token punctuation">]</span>$ sc demo.*
+demo.MathGame
+Affect<span class="token punctuation">(</span>row-cnt:1<span class="token punctuation">)</span> cost <span class="token keyword">in</span> 11 ms.
+</code></pre>
+<h3 id="sm：查看已加载类的方法信息"><a href="#sm：查看已加载类的方法信息" class="headerlink" title="sm：查看已加载类的方法信息"></a>sm：查看已加载类的方法信息</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>arthas@1941640<span class="token punctuation">]</span>$ sm java.lang.String
+java.lang.String <span class="token operator">&lt;</span>init<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">[</span>BII<span class="token punctuation">)</span>V
+java.lang.String <span class="token operator">&lt;</span>init<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">[</span>BLjava/nio/charset/Charset<span class="token punctuation">;</span><span class="token punctuation">)</span>V
+java.lang.String <span class="token operator">&lt;</span>init<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">[</span>BLjava/lang/String<span class="token punctuation">;</span><span class="token punctuation">)</span>V
+java.lang.String <span class="token operator">&lt;</span>init<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">[</span>BIILjava/nio/charset/Charset<span class="token punctuation">;</span><span class="token punctuation">)</span>V
+java.lang.String <span class="token operator">&lt;</span>init<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">[</span>BIILjava/lang/String<span class="token punctuation">;</span><span class="token punctuation">)</span>V
+</code></pre>
+<h4 id="jad-反编译指定已加载类的源码"><a href="#jad-反编译指定已加载类的源码" class="headerlink" title="jad:反编译指定已加载类的源码"></a>jad:反编译指定已加载类的源码</h4><p><code>jad</code> 命令将 JVM 中实际运行的 class 的 byte code 反编译成 java 代码，便于你理解业务逻辑；</p>
+<ul>
+<li>在 Arthas Console 上，反编译出来的源码是带语法高亮的，阅读更方便</li>
+<li>当然，反编译出来的 java 代码可能会存在语法错误，但不影响你进行阅读理解</li>
+</ul>
+<h4 id="mc：编译-java文件生成-class。"><a href="#mc：编译-java文件生成-class。" class="headerlink" title="mc：编译.java文件生成.class。"></a>mc：编译<code>.java</code>文件生成<code>.class</code>。</h4><pre class=" language-bash"><code class="language-bash">mc /tmp/Test.java
+</code></pre>
+<h4 id="redefine：加载外部的-class文件，redefine-jvm-已加载的类。"><a href="#redefine：加载外部的-class文件，redefine-jvm-已加载的类。" class="headerlink" title="redefine：加载外部的.class文件，redefine jvm 已加载的类。"></a>redefine：加载外部的<code>.class</code>文件，redefine jvm 已加载的类。</h4><p>推荐使用retransform</p>
+<pre class=" language-bash"><code class="language-bash">retransform /tmp/Test.class
+</code></pre>
+<h4 id="classloader：查看classloader的继承树，类加载信息"><a href="#classloader：查看classloader的继承树，类加载信息" class="headerlink" title="classloader：查看classloader的继承树，类加载信息"></a>classloader：查看classloader的继承树，类加载信息</h4><p><code>classloader</code> 命令将 JVM 中所有的 classloader 的信息统计出来，并可以展示继承树，urls 等。</p>
+<p>可以让指定的 classloader 去 getResources，打印出所有查找到的 resources 的 url。对于<code>ResourceNotFoundException</code>比较有用。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>arthas@1941640<span class="token punctuation">]</span>$ classloader
+ name                                       numberOfInstances  loadedCount 
+                                                               Total       
+ BootstrapClassLoader                       1                  2896        
+ com.taobao.arthas.agent.ArthasClassloader  1                  2467        
+ sun.misc.Launcher<span class="token variable">$ExtClassLoader</span>           1                  64          
+ sun.reflect.DelegatingClassLoader          13                 13          
+ sun.misc.Launcher<span class="token variable">$AppClassLoader</span>           1                  4           
+Affect<span class="token punctuation">(</span>row-cnt:5<span class="token punctuation">)</span> cost <span class="token keyword">in</span> 5 ms.
+</code></pre>
+<h4 id="monitor-x2F-watch-x2F-trace-相关"><a href="#monitor-x2F-watch-x2F-trace-相关" class="headerlink" title="monitor&#x2F;watch&#x2F;trace 相关"></a>monitor&#x2F;watch&#x2F;trace 相关</h4><p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330001921336.png" alt="image-20230330001921336"></p>
+<h4 id="profiler-x2F-火焰图"><a href="#profiler-x2F-火焰图" class="headerlink" title="profiler&#x2F;火焰图"></a>profiler&#x2F;火焰图</h4><p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330001943611.png" alt="image-20230330001943611"></p>
+<p>官方文档:<a target="_blank" rel="noopener" href="https://arthas.gitee.io/doc/profiler.html#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E">https://arthas.gitee.io/doc/profiler.html#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E</a></p>
 
                 
             </div>
@@ -498,7 +600,7 @@ systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/06/09/linux-%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/">http://example.com/2021/06/09/linux-%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/</a>
+                    <a href="http://example.com/2021/05/14/Arthas/">http://example.com/2021/05/14/Arthas/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,8 +638,8 @@ systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/jvm/">
+                                    <span class="chip bg-color">jvm</span>
                                 </a>
                             
                         </div>
@@ -620,13 +722,13 @@ systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/06/13/linux-%E5%8A%A8%E6%80%81%E7%9B%91%E6%8E%A7/">
+                <a href="/2021/06/09/linux-%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="linux-动态监控进程">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="linux-服务管理">
                         
-                        <span class="card-title">linux-动态监控进程</span>
+                        <span class="card-title">linux-服务管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -637,7 +739,7 @@ systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-13
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-09
                         </span>
                         <span class="publish-author">
                             
@@ -669,13 +771,13 @@ systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/14/Arthas/">
+                <a href="/2021/05/14/%E6%B3%A8%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Arthas">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="注解">
                         
-                        <span class="card-title">Arthas</span>
+                        <span class="card-title">注解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -703,8 +805,8 @@ systemctl is-enabled 服务名 <span class="token punctuation">(</span>查询某
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jvm/">
-                        <span class="chip bg-color">jvm</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
                 </div>
