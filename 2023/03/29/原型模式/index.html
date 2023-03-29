@@ -4,16 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="解压和压缩命令, kevintam">
-    <meta name="description" content="解压和压缩命令
- 压缩和解压类
+    <meta name="keywords" content="原型模式, kevintam">
+    <meta name="description" content="原型模式1.1 概述用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型对象相同的新对象。
+1.2 结构原型模式包含如下角色:
 
- gzip/gunzip 指令
-
-gzip 用于压缩文件，gunzip用于解压的
-基本语法:
-gzip 文件 (功能描述:压缩文件,只能将文件压缩为*.gz文件)
-gunzip 文件.gz (解压缩文件命令">
+抽象原型类:规定了具体原型对象必须实现的的 clone() 方法。 
+具体原型类:实现抽象原型类的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +21,7 @@ gunzip 文件.gz (解压缩文件命令">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>解压和压缩命令 | kevintam</title>
+    <title>原型模式 | kevintam</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -342,12 +338,12 @@ gunzip 文件.gz (解压缩文件命令">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">解压和压缩命令</h1>
+                    <h1 class="description center-align post-title">原型模式</h1>
                 </div>
             </div>
         </div>
@@ -371,8 +367,8 @@ gunzip 文件.gz (解压缩文件命令">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">设计模式</span>
                             </a>
                         
                     </div>
@@ -396,7 +392,7 @@ gunzip 文件.gz (解压缩文件命令">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-22
+                    2023-03-29
                 </div>
                 
 
@@ -417,95 +413,67 @@ gunzip 文件.gz (解压缩文件命令">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="解压和压缩命令"><a href="#解压和压缩命令" class="headerlink" title="解压和压缩命令"></a>解压和压缩命令</h3><blockquote>
-<p> 压缩和解压类</p>
-</blockquote>
-<pre class=" language-code"><code class="language-code"> gzip/gunzip 指令
+                <h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p>用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型对象相同的新对象。</p>
+<h2 id="1-2-结构"><a href="#1-2-结构" class="headerlink" title="1.2 结构"></a>1.2 结构</h2><p>原型模式包含如下角色:</p>
+<ul>
+<li>抽象原型类:规定了具体原型对象必须实现的的 clone() 方法。 </li>
+<li>具体原型类:实现抽象原型类的 clone() 方法，它是可被复制的对象。 </li>
+<li>访问类:使用具体原型类中的 clone() 方法来复制新的对象。</li>
+</ul>
+<p>接口类图如下:</p>
+<p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230329182720307.png" alt="image-20230329182720307"></p>
+<h2 id="1-3-实现"><a href="#1-3-实现" class="headerlink" title="1.3 实现"></a>1.3 实现</h2><p>原型模式的克隆分为浅克隆和深克隆。</p>
+<ul>
+<li>浅克隆:创建一个新对象，新对象的属性和原来对象完全相同，对于非基本类型属性，仍指向原有属性所指向的对象的内存地址。</li>
+<li>深克隆:创建一个新对象，属性中引用的其他对象也会被克隆，不再指向原有对象地址。</li>
+</ul>
+<p>Java中的Object类中提供了 clone() 方法来实现浅克隆。 Cloneable 接口是上面的类图中的抽象原型类，而实现了Cloneable接口的子实现类就是具体的原型类。代码如下:</p>
+<p>Realizetype(具体的原型类):</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Prototype</span> <span class="token keyword">implements</span> <span class="token class-name">Cloneable</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//返回具体的复制对象</span>
+    <span class="token keyword">public</span> <span class="token function">Prototype</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体的原型对象创建完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> Prototype <span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> CloneNotSupportedException <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体原型复制成功！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>Prototype<span class="token punctuation">)</span><span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>gzip 用于压缩文件，gunzip用于解压的</p>
-<p>基本语法:</p>
-<pre class=" language-code"><code class="language-code">gzip 文件 (功能描述:压缩文件,只能将文件压缩为*.gz文件)
-gunzip 文件.gz (解压缩文件命令
+<p><strong>PrototypeTest</strong>：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrototypeTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> CloneNotSupportedException <span class="token punctuation">{</span>
+        Prototype r1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Prototype</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Prototype r2 <span class="token operator">=</span> r1<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"对象r1和r2是同一个对象?"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>r1 <span class="token operator">==</span> r2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>应用实例:</p>
-<p>案列1: gzip压缩,将&#x2F;home下的hello.txt文件进行压缩</p>
-<pre class=" language-linux"><code class="language-linux">gzip /home/hello.txt  #压缩
+<p>结果如下:</p>
+<pre class=" language-java"><code class="language-java">具体的原型对象创建完成
+具体原型复制成功！
+对象r1和r2是同一个对象<span class="token operator">?</span><span class="token boolean">false</span>
 </code></pre>
-<p>案列2:gunzip压缩,将&#x2F;home下的hello.txt.gz文件进行解压缩.</p>
-<pre class=" language-bash"><code class="language-bash">gunzip /home/hello.txt.gz <span class="token comment" spellcheck="true">#解压</span>
+<h2 id="1-4-使用场景"><a href="#1-4-使用场景" class="headerlink" title="1.4 使用场景"></a>1.4 <strong>使用场景</strong></h2><ul>
+<li><p>对象的创建非常复杂，可以使用原型模式快捷的创建对象。</p>
+</li>
+<li><p>性能和安全要求比较高</p>
+</li>
+</ul>
+<h2 id="1-5-扩展-深克隆"><a href="#1-5-扩展-深克隆" class="headerlink" title="1.5 扩展(深克隆)"></a>1.5 <strong>扩展(深克隆)</strong></h2><p>要想使用深克隆必须使用我们的对象流来进行。</p>
+<pre class=" language-java"><code class="language-java">Prototype r1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Prototype</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+FileOutputStream fos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ObjectOutputStream oos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectOutputStream</span><span class="token punctuation">(</span>fos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+oos<span class="token punctuation">.</span><span class="token function">writeObject</span><span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//使用我们的对象的输入流进行解析</span>
+ObjectInputStream ois <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span>
+<span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"C:\\Users\\Think\\Desktop\\b.txt"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//读取对象</span>
+Prototype c2 <span class="token operator">=</span> <span class="token punctuation">(</span>Prototype<span class="token punctuation">)</span> ois<span class="token punctuation">.</span><span class="token function">readObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="zip-x2F-unzip指令"><a href="#zip-x2F-unzip指令" class="headerlink" title="zip&#x2F;unzip指令"></a>zip&#x2F;unzip指令</h3><blockquote>
-<p> zip用于压缩文件，unzip用于解压的，这个在项目打爆发布中很有用.</p>
-</blockquote>
-<p>基本语法:</p>
-<pre class=" language-linux"><code class="language-linux">zip [选项] xxx.zip 将要压缩的内容  （功能描述:压缩文件和目录的命令）
-unzip [选项] xxx.zip (功能描述:解压缩文件)
-</code></pre>
-<p>zip常用选项</p>
-<p>-r: 递归压缩，即压缩目录</p>
-<p>unzip的常用选项</p>
-<p>-d &lt;目录&gt;:指定解压后文件的存放目录</p>
-<p>案例:</p>
-<p>案例一:将&#x2F;home下的所有文件&#x2F;进行压缩成myhome.zip</p>
-<pre class=" language-linux"><code class="language-linux">zip -r myhome/  
-</code></pre>
-<p>案例二:将myhome.zip压缩到&#x2F;opt&#x2F;temp下.</p>
-<pre class=" language-linux"><code class="language-linux">unzip -d /opt/temp myhome.zip  
-</code></pre>
-<h3 id="tar指令-最常用的命令"><a href="#tar指令-最常用的命令" class="headerlink" title="tar指令(最常用的命令)"></a>tar指令(最常用的命令)</h3><p>tar指令是打包指令,最后打包后的文件是.tar.gz的文件</p>
-<p>基本语法：</p>
-<blockquote>
-<p>tar [选项] xxx.tar.gz 打包的内容  （功能描述:打包目录,压缩后的文件选项说明）</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-c</td>
-<td align="center">产生.tar打包文件</td>
-</tr>
-<tr>
-<td>-v</td>
-<td align="center">显示详细信息</td>
-</tr>
-<tr>
-<td>-f</td>
-<td align="center">指定压缩后的文件名</td>
-</tr>
-<tr>
-<td>-z</td>
-<td align="center">用gzip对文档进行压缩或解压</td>
-</tr>
-<tr>
-<td>-x</td>
-<td align="center">解包.tar文件</td>
-</tr>
-</tbody></table>
-<p>应用案例：</p>
-<p>案例一:压缩多个文件,将&#x2F;home&#x2F;pig.txt和&#x2F;home&#x2F;cat.txt压缩成pc.tar.gz</p>
-<pre class=" language-linux"><code class="language-linux">[root@VM-0-17-centos home]# tar -zcvf pc.tar.gz cat.txt pig.txt
-cat.txt
-pig.txt
-[root@VM-0-17-centos home]# ls
-cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
-</code></pre>
-<p>案例二：将&#x2F;home的文件夹压缩成myhome.tar.gz</p>
-<pre class=" language-linux"><code class="language-linux">[root@VM-0-17-centos home]# tar -zcvf myhome.tar.gz /home/ #包括/home
-</code></pre>
-<p>案例三：将pc.tar.gz解压到当前目录.</p>
-<pre class=" language-linux"><code class="language-linux">[root@VM-0-17-centos home]# tar -zxvf pc.tar.gz 
-cat.txt
-pig.txt
-[root@VM-0-17-centos home]# ls
-cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
-</code></pre>
-<p>案例四：将myhome.tar.gz 解压到&#x2F;opt&#x2F;temm目录下</p>
-<pre class=" language-linux"><code class="language-linux">tar -zxvf /home/myhome.tar.gz -C /opt/tem2
-</code></pre>
+<p>注意⚠️:Prototype类必须实现Serializable接口，否则会抛 NotSerializableException异常。</p>
 
                 
             </div>
@@ -532,7 +500,7 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/04/22/%E8%A7%A3%E5%8E%8B%E5%92%8C%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4/">http://example.com/2021/04/22/%E8%A7%A3%E5%8E%8B%E5%92%8C%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4/</a>
+                    <a href="http://example.com/2023/03/29/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">http://example.com/2023/03/29/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,8 +538,8 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">设计模式</span>
                                 </a>
                             
                         </div>
@@ -650,17 +618,18 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/04/22/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+                <a href="/2023/03/29/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="建造者模式">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="原型模式">
                         
-                        <span class="card-title">建造者模式</span>
+                        <span class="card-title">原型模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -670,9 +639,9 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -685,6 +654,7 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -703,13 +673,13 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/18/%E8%B5%B0%E8%BF%9Blinux%E7%B3%BB%E7%BB%9F/">
+                <a href="/2023/03/28/%E9%9D%A2%E8%AF%95%E4%BD%93%E6%80%BB%E7%BB%93/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="走进linux系统">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="面试体总结">
                         
-                        <span class="card-title">走进linux系统</span>
+                        <span class="card-title">面试体总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -720,27 +690,15 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
-                                    技术
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            kevintam
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
                 </div>
                 
             </div>

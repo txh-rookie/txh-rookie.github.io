@@ -4,16 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="解压和压缩命令, kevintam">
-    <meta name="description" content="解压和压缩命令
- 压缩和解压类
-
- gzip/gunzip 指令
-
-gzip 用于压缩文件，gunzip用于解压的
-基本语法:
-gzip 文件 (功能描述:压缩文件,只能将文件压缩为*.gz文件)
-gunzip 文件.gz (解压缩文件命令">
+    <meta name="keywords" content="面试体总结, kevintam">
+    <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +17,7 @@ gunzip 文件.gz (解压缩文件命令">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>解压和压缩命令 | kevintam</title>
+    <title>面试体总结 | kevintam</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -342,12 +334,12 @@ gunzip 文件.gz (解压缩文件命令">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">解压和压缩命令</h1>
+                    <h1 class="description center-align post-title">面试体总结</h1>
                 </div>
             </div>
         </div>
@@ -369,25 +361,12 @@ gunzip 文件.gz (解压缩文件命令">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
-                                技术
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -396,7 +375,7 @@ gunzip 文件.gz (解压缩文件命令">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-22
+                    2023-03-28
                 </div>
                 
 
@@ -417,96 +396,7 @@ gunzip 文件.gz (解压缩文件命令">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="解压和压缩命令"><a href="#解压和压缩命令" class="headerlink" title="解压和压缩命令"></a>解压和压缩命令</h3><blockquote>
-<p> 压缩和解压类</p>
-</blockquote>
-<pre class=" language-code"><code class="language-code"> gzip/gunzip 指令
-</code></pre>
-<p>gzip 用于压缩文件，gunzip用于解压的</p>
-<p>基本语法:</p>
-<pre class=" language-code"><code class="language-code">gzip 文件 (功能描述:压缩文件,只能将文件压缩为*.gz文件)
-gunzip 文件.gz (解压缩文件命令
-</code></pre>
-<p>应用实例:</p>
-<p>案列1: gzip压缩,将&#x2F;home下的hello.txt文件进行压缩</p>
-<pre class=" language-linux"><code class="language-linux">gzip /home/hello.txt  #压缩
-</code></pre>
-<p>案列2:gunzip压缩,将&#x2F;home下的hello.txt.gz文件进行解压缩.</p>
-<pre class=" language-bash"><code class="language-bash">gunzip /home/hello.txt.gz <span class="token comment" spellcheck="true">#解压</span>
-</code></pre>
-<h3 id="zip-x2F-unzip指令"><a href="#zip-x2F-unzip指令" class="headerlink" title="zip&#x2F;unzip指令"></a>zip&#x2F;unzip指令</h3><blockquote>
-<p> zip用于压缩文件，unzip用于解压的，这个在项目打爆发布中很有用.</p>
-</blockquote>
-<p>基本语法:</p>
-<pre class=" language-linux"><code class="language-linux">zip [选项] xxx.zip 将要压缩的内容  （功能描述:压缩文件和目录的命令）
-unzip [选项] xxx.zip (功能描述:解压缩文件)
-</code></pre>
-<p>zip常用选项</p>
-<p>-r: 递归压缩，即压缩目录</p>
-<p>unzip的常用选项</p>
-<p>-d &lt;目录&gt;:指定解压后文件的存放目录</p>
-<p>案例:</p>
-<p>案例一:将&#x2F;home下的所有文件&#x2F;进行压缩成myhome.zip</p>
-<pre class=" language-linux"><code class="language-linux">zip -r myhome/  
-</code></pre>
-<p>案例二:将myhome.zip压缩到&#x2F;opt&#x2F;temp下.</p>
-<pre class=" language-linux"><code class="language-linux">unzip -d /opt/temp myhome.zip  
-</code></pre>
-<h3 id="tar指令-最常用的命令"><a href="#tar指令-最常用的命令" class="headerlink" title="tar指令(最常用的命令)"></a>tar指令(最常用的命令)</h3><p>tar指令是打包指令,最后打包后的文件是.tar.gz的文件</p>
-<p>基本语法：</p>
-<blockquote>
-<p>tar [选项] xxx.tar.gz 打包的内容  （功能描述:打包目录,压缩后的文件选项说明）</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-c</td>
-<td align="center">产生.tar打包文件</td>
-</tr>
-<tr>
-<td>-v</td>
-<td align="center">显示详细信息</td>
-</tr>
-<tr>
-<td>-f</td>
-<td align="center">指定压缩后的文件名</td>
-</tr>
-<tr>
-<td>-z</td>
-<td align="center">用gzip对文档进行压缩或解压</td>
-</tr>
-<tr>
-<td>-x</td>
-<td align="center">解包.tar文件</td>
-</tr>
-</tbody></table>
-<p>应用案例：</p>
-<p>案例一:压缩多个文件,将&#x2F;home&#x2F;pig.txt和&#x2F;home&#x2F;cat.txt压缩成pc.tar.gz</p>
-<pre class=" language-linux"><code class="language-linux">[root@VM-0-17-centos home]# tar -zcvf pc.tar.gz cat.txt pig.txt
-cat.txt
-pig.txt
-[root@VM-0-17-centos home]# ls
-cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
-</code></pre>
-<p>案例二：将&#x2F;home的文件夹压缩成myhome.tar.gz</p>
-<pre class=" language-linux"><code class="language-linux">[root@VM-0-17-centos home]# tar -zcvf myhome.tar.gz /home/ #包括/home
-</code></pre>
-<p>案例三：将pc.tar.gz解压到当前目录.</p>
-<pre class=" language-linux"><code class="language-linux">[root@VM-0-17-centos home]# tar -zxvf pc.tar.gz 
-cat.txt
-pig.txt
-[root@VM-0-17-centos home]# ls
-cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
-</code></pre>
-<p>案例四：将myhome.tar.gz 解压到&#x2F;opt&#x2F;temm目录下</p>
-<pre class=" language-linux"><code class="language-linux">tar -zxvf /home/myhome.tar.gz -C /opt/tem2
-</code></pre>
-
+                
                 
             </div>
             <hr/>
@@ -532,7 +422,7 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/04/22/%E8%A7%A3%E5%8E%8B%E5%92%8C%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4/">http://example.com/2021/04/22/%E8%A7%A3%E5%8E%8B%E5%92%8C%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4/</a>
+                    <a href="http://example.com/2023/03/28/%E9%9D%A2%E8%AF%95%E4%BD%93%E6%80%BB%E7%BB%93/">http://example.com/2023/03/28/%E9%9D%A2%E8%AF%95%E4%BD%93%E6%80%BB%E7%BB%93/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -569,11 +459,7 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -654,13 +540,13 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/04/22/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+                <a href="/2023/03/29/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="建造者模式">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="原型模式">
                         
-                        <span class="card-title">建造者模式</span>
+                        <span class="card-title">原型模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -671,7 +557,7 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-29
                         </span>
                         <span class="publish-author">
                             
@@ -703,13 +589,13 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/18/%E8%B5%B0%E8%BF%9Blinux%E7%B3%BB%E7%BB%9F/">
+                <a href="/2023/03/27/jvm%E7%9A%84%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="走进linux系统">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="jvm的性能调优">
                         
-                        <span class="card-title">走进linux系统</span>
+                        <span class="card-title">jvm的性能调优</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -720,27 +606,15 @@ cat.txt  hello.txt  hexo  kevintam  pc.tar.gz  pig.txt  txh
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
-                                    技术
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            kevintam
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
                 </div>
                 
             </div>
