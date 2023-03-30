@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="进程管理, kevintam">
-    <meta name="description" content="进程管理（重点）基本介绍
-在 LINUX 中，每个执行的程序都称为一个进程。每一个进程都分配一个 ID 号(pid,进程号)。&amp;#x3D;&amp;gt;windows &amp;#x3D;&amp;gt; linux
-每个进程都可能以两种方式存在的。前台与后台，">
+    <meta name="keywords" content="策略模式, kevintam">
+    <meta name="description" content="策略模式概述:先看下面的图片，我们去旅游选择出行模式有很多种，可以骑自行车、可以坐汽车、可以坐火车、可以坐飞机。
+
+
+作为一个程序猿，开发需要选择一款开发工具，当然可以进行代码开发的工具有很多，可以选择Idea 进行开发，也可以使用ecli">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>进程管理 | kevintam</title>
+    <title>策略模式 | kevintam</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -341,7 +342,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">进程管理</h1>
+                    <h1 class="description center-align post-title">策略模式</h1>
                 </div>
             </div>
         </div>
@@ -365,8 +366,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">设计模式</span>
                             </a>
                         
                     </div>
@@ -390,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-05-14
+                    2021-05-08
                 </div>
                 
 
@@ -411,77 +412,98 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="进程管理（重点）"><a href="#进程管理（重点）" class="headerlink" title="进程管理（重点）"></a>进程管理（重点）</h3><h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><ol>
-<li>在 LINUX 中，每个执行的程序都称为一个进程。每一个进程都分配一个 ID 号(pid,进程号)。&#x3D;&gt;windows &#x3D;&gt; linux</li>
-<li>每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。</li>
-<li>一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到关机才才结束。</li>
-</ol>
-<h4 id="显示系统执行的进程"><a href="#显示系统执行的进程" class="headerlink" title="显示系统执行的进程"></a>显示系统执行的进程</h4><p>ps 命令是用来查看目前系统中，有哪些正在执行，以及它们执行的状况。可以不加任何参数.</p>
-<p><img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/image-20210514173753530.png" alt="image-20210514173753530"></p>
-<h4 id="ps-详解"><a href="#ps-详解" class="headerlink" title="ps 详解"></a>ps 详解</h4><ol>
-<li>指令：ps –aux|grep xxx ，比如我看看有没有 sshd 服务</li>
-<li>指令说明<ul>
-<li>System V 展示风格</li>
-<li>USER：用户名称</li>
-<li>PID：进程号</li>
-<li>%CPU：进程占用 CPU 的百分比</li>
-<li>%MEM：进程占用物理内存的百分比</li>
-<li>VSZ：进程占用的虚拟内存大小（单位：KB）</li>
-<li>RSS：进程占用的物理内存大小（单位：KB）</li>
-<li>TT：终端名称,缩写 .</li>
-<li>STAT：进程状态，其中 S-睡眠，s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先级更低的优先级，R-正在运行，D-短期等待，Z-僵死进程，T-被跟踪或者被停止等等</li>
-<li>STARTED：进程的启动时间</li>
-<li>TIME： CPU 时间，即进程使用 CPU 的总时间</li>
-<li>COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</li>
+                <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述:"></a>概述:</h2><p>先看下面的图片，我们去旅游选择出行模式有很多种，可以骑自行车、可以坐汽车、可以坐火车、可以坐飞机。</p>
+<img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330231602743.png" alt="image-20230330231602743" style="zoom:50%;" />
+
+<p>作为一个程序猿，开发需要选择一款开发工具，当然可以进行代码开发的工具有很多，可以选择Idea 进行开发，也可以使用eclipse进行开发，也可以使用其他的一些开发工具。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义:"></a><strong>定义:</strong></h3><p>该模式定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的变化不会影响使用算法的客户。策略模式属于对象行为模式，它通过对算法进行封装，把使用算法的责任和算法的实现分割开来，并委派给不同的对象对这些算法进行管理。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a><strong>结构</strong></h2><p>策略模式的主要角色如下:</p>
+<ul>
+<li>抽象策略(Strategy)类:这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。</li>
+<li>具体策略(Concrete Strategy)类:实现了抽象策略定义的接口，提供具体的算法实现或行 为。</li>
 </ul>
+<h2 id="案例实现"><a href="#案例实现" class="headerlink" title="案例实现"></a><strong>案例实现</strong></h2><p>例】促销活动</p>
+<p>一家百货公司在定年度的促销活动。针对不同的节日(春节、中秋节、圣诞节)推出不同的促销活动，由促销员将促销活动展示给客户。类图如下:</p>
+<img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330231740576.png" alt="image-20230330231740576" style="zoom:50%;" />
+
+<p>代码如下:</p>
+<p>抽象策略(Strategy)类:</p>
+<p>定义百货公司所有促销活动的共同接口</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Strategy</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>定义具体策略角色(Concrete Strategy):每个节日具体的促销活动</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StrategyB</span> <span class="token keyword">implements</span> <span class="token class-name">Strategy</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"满200元减50元"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StrategyA</span> <span class="token keyword">implements</span> <span class="token class-name">Strategy</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"买一送一"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>定义环境角色:也就是怎么使用?用于连接上下文，即把促销活动推销给客户，这里可以理解为销售员</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SalesMan</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//持有抽象策略角色的引用 private Strategy strategy;</span>
+    <span class="token keyword">public</span> <span class="token function">SalesMan</span><span class="token punctuation">(</span>Strategy strategy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>strategy <span class="token operator">=</span> strategy<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//向客户展示促销活动</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">salesManShow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        strategy<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点:"></a>优缺点:</h2><p>优点:</p>
+<ul>
+<li><p>策略类之间可以自由切换</p>
+<p>由于策略类都实现同一个接口，所以使它们之间可以自由切换。</p>
 </li>
-</ol>
-<h4 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h4><p>要求：以全格式显示当前所有的进程，查看进程的父进程。 查看 sshd 的父进程信息</p>
-<pre class=" language-linux"><code class="language-linux">ps -ef 是以全格式显示当前所有的进程
--e 显示所有进程。-f 全格式
-ps -ef|grep sshd
-root       942     1  0 Mar16 ?        00:02:16 /usr/sbin/sshd -D
-root     17779   942  0 17:06 ?        00:00:00 sshd: root@pts/1
-root     27343   942  0 17:56 ?        00:00:00 sshd: root [priv]
-sshd     27344 27343  0 17:56 ?        00:00:00 sshd: root [net]
-是 BSD 风格
-UID：用户 ID
-PID：进程 ID
-PPID：父进程 ID
-C：CPU 用于计算执行优先级的因子。数值越大，表明进程是 CPU 密集型运算，执行优先级会降低；数值越小，表
-明进程是 I/O 密集型运算，执行优先级会提高
-STIME：进程启动的时间
-TTY：完整的终端名称
-TIME：CPU 时间
-CMD：启动进程所用的命令和参数
+<li><p>易于扩展</p>
+<p>增加一个新的策略只需要添加一个具体的策略类即可，基本不需要改变原有的代码，符合“开闭原 则“</p>
+</li>
+<li><p>避免使用多重条件选择语句(if else)，充分体现面向对象设计思想。</p>
+</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。</li>
+<li>策略模式将造成产生很多策略类，可以通过使用享元模式在一定程度上减少对象的数量。</li>
+</ul>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a><strong>使用场景</strong></h2><ul>
+<li>一个系统需要动态地在几种算法中选择一种时，可将每个算法封装到策略类中。</li>
+<li>一个类定义了多种行为，并且这些行为在这个类的操作中以多个条件语句的形式出现，可将每个条<br>  件分支移入它们各自的策略类中以代替这些条件语句。</li>
+<li>系统中各算法彼此完全独立，且要求对客户隐藏具体算法的实现细节时。</li>
+<li>系统要求使用算法的客户不应该知道其操作的数据时，可使用策略模式来隐藏与算法相关的数据结构。</li>
+<li>多个类只区别在表现行为不同，可以使用策略模式，在运行时动态选择具体要执行的行为。</li>
+</ul>
+<h2 id="在项目中具体使用细节："><a href="#在项目中具体使用细节：" class="headerlink" title="在项目中具体使用细节："></a>在项目中具体使用细节：</h2><p>在项目中的登录功能中，我们一般项目的登录是具有多种登录方式，比如说手机号验证码登录、账号密码登录、就是我们的微信登录等。所以一般实现的方式就是我们和前端之间约定使用一个字段，来表示你具体使用的那种登录方式，比如说:可以有一个login_type的属性，每次前端提交请求时，将对应的请求方式一起封装到的login_type这个属性中，比如说账号密码的方法我们的login_type就是我们的password模式、比如说我们的微信登录方式，可以使用我们的login_type的wx模式。这样一种实现，我们的后端就知道你请求的是哪一种具体的登录行为。</p>
+<p>我们就可以通过我们的if else。进行判断，然后让它分别去调用不用等登录方式。</p>
+<p>这是我们的一般的设计登录的方式，但是这种方式，如果说我们需要将加一种登录方式，就需要去更改我们的源码。需要加一个if else。这样不经违背我们的开闭原则，而且会让我们的代码的格式不是很美观。</p>
+<p>所以一般我们可以使用策略模式对其进行优化。</p>
+<p>我们可以定义一个抽象策略类，在这个抽象策略类中定义一个executor这样一个方法，进行执行。</p>
+<p>然后让我们的登录方法去实现我们的抽象策略类。我们的登录方式就是我们的具体的策略类。</p>
+<p>然后加上我们的@Service方法，将我们的登录方式注入到我们的ioc容器中。添加上我们的名称。比如说是:passwordService,我们拿到login_type之后，将它的值进行拼接。可以我们就可以拿到对应的service进行执行。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">AuthService</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * 认证方式
+     * @param authParamsDto 统一请求的类型
+     * @return
+     */</span>
+    <span class="token keyword">public</span> XcUserExt <span class="token function">execute</span><span class="token punctuation">(</span>AuthParamsDto authParamsDto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<h4 id="终止进程-kill-和-killall"><a href="#终止进程-kill-和-killall" class="headerlink" title="终止进程 kill 和 killall"></a>终止进程 kill 和 killall</h4><blockquote>
-<p>若是某个进程执行一半需要停止时，或是已消了很大的系统资源时，此时可以考虑停止该进程。使用 kill 命令来完成此项任务</p>
-</blockquote>
-<p>基本语法:</p>
-<pre class=" language-linux"><code class="language-linux">kill [选项] 进程号（功能描述：通过进程号杀死/终止进程）
-killall 进程名称（功能描述：通过进程名称杀死进程，也支持通配符，这在系统因负载过大而变得很慢时很有用）
+<pre class=" language-java"><code class="language-java">  <span class="token comment" spellcheck="true">//根据我们的请求的类型不同可以有不同的参数</span>
+        String authType <span class="token operator">=</span> authParamsDto<span class="token punctuation">.</span><span class="token function">getAuthType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        AuthService authService <span class="token operator">=</span> applicationContext<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>authType <span class="token operator">+</span> <span class="token string">"_authService"</span><span class="token punctuation">,</span> AuthService<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//完成认证</span>
+        XcUserExt execute <span class="token operator">=</span> authService<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>authParamsDto<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>常用选项:</p>
-<p>-9 :表示强迫进程立即停止</p>
-<p>应用案例:</p>
-<p>案例 1. ：踢掉某个非法登录用户</p>
-<pre class=" language-linux"><code class="language-linux">kill 进程号 , 比如 kill 11421
-</code></pre>
-<p>案例 2: 终止远程登录服务 sshd, 在适当时候再次重启 sshd 服务</p>
-<pre class=" language-linux"><code class="language-linux">kill sshd 对应的进程号; /bin/systemctl start sshd.service
-</code></pre>
-<p>案例 3: 终止多个 gedit , 演示 killall gedit</p>
-<pre class=" language-linux"><code class="language-linux">通过进程的名字来终止进程
-</code></pre>
-<p>案例 4：强制杀掉一个终端, 指令 kill -9 bash 对应的进程号</p>
-<pre class=" language-linux"><code class="language-linux">kill -9 bash
-</code></pre>
-<h4 id="查看进程树-pstree"><a href="#查看进程树-pstree" class="headerlink" title="查看进程树 pstree"></a>查看进程树 pstree</h4><p>基本语法</p>
-<pre class=" language-linux"><code class="language-linux">pstree [选项] ,可以更加直观的来看进程信息
-</code></pre>
-<p>常用选项</p>
-<p>-p :显示进程的 PID<br>-u :显示进程的所属用户</p>
 
                 
             </div>
@@ -508,7 +530,7 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/05/14/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">http://example.com/2021/05/14/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</a>
+                    <a href="http://example.com/2021/05/08/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">http://example.com/2021/05/08/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -546,8 +568,8 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">设计模式</span>
                                 </a>
                             
                         </div>
@@ -630,13 +652,13 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/05/14/%E6%B3%A8%E8%A7%A3/">
+                <a href="/2021/05/14/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="注解">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="进程管理">
                         
-                        <span class="card-title">注解</span>
+                        <span class="card-title">进程管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -664,8 +686,8 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
@@ -679,13 +701,13 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/08/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
+                <a href="/2021/04/28/shell%E8%84%9A%E6%9C%AC/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="策略模式">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="shell脚本">
                         
-                        <span class="card-title">策略模式</span>
+                        <span class="card-title">shell脚本</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -696,7 +718,7 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
                             </span>
                         <span class="publish-author">
                             
@@ -713,8 +735,8 @@ killall 进程名称（功能描述：通过进程名称杀死进程，也支持
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                        <span class="chip bg-color">设计模式</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
