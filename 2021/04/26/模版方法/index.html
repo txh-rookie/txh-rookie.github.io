@@ -4,15 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="linux组的介绍, kevintam">
-    <meta name="description" content="linux组的介绍在linux中每个用户必须属于一个组,不能独立于组外。在linux中每个文件有所有组、所在组、其它组的概念
-
-所有者
-所在组
-其它组
-改变用户所在的组
-
-文件&amp;#x2F;目录 所有者一般为文件的创建者,谁创建了该文件,就自">
+    <meta name="keywords" content="模板方法模式, kevintam">
+    <meta name="description" content="模板方法模式行为模式行为型模式用于描述程序在运行时复杂的流程控制，即描述多个类或对象之间怎样相互协作共同完成单个对象都无法单独完成的任务，它涉及算法与对象间职责的分配。
+行为型模式分为类行为模式和对象行为模式，前者采用继承机制来在类间分派行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>linux组的介绍 | kevintam</title>
+    <title>模板方法模式 | kevintam</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -341,12 +335,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux组的介绍</h1>
+                    <h1 class="description center-align post-title">模板方法模式</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +364,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">设计模式</span>
                             </a>
                         
                     </div>
@@ -395,7 +389,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-27
+                    2021-04-26
                 </div>
                 
 
@@ -416,129 +410,189 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="linux组的介绍"><a href="#linux组的介绍" class="headerlink" title="linux组的介绍"></a>linux组的介绍</h3><p>在linux中每个用户必须属于一个组,不能独立于组外。在linux中每个文件有所有组、所在组、其它组的概念</p>
+                <h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><p>行为型模式用于描述程序在运行时复杂的流程控制，即描述多个类或对象之间怎样相互协作共同完成单个对象都无法单独完成的任务，它涉及算法与对象间职责的分配。</p>
+<p>行为型模式分为类行为模式和对象行为模式，前者采用继承机制来在类间分派行为，后者采用组合或聚合在对象间分配行为。由于组合关系或聚合关系比继承关系耦合度低，满足“合成复用原则”，所以对象 行为模式比类行为模式具有更大的灵活性。</p>
+<p>行为型模式分为:</p>
 <ul>
-<li>所有者</li>
-<li>所在组</li>
-<li>其它组</li>
-<li>改变用户所在的组</li>
+<li>模板方法模式</li>
+<li>策略模式</li>
+<li>命令模式</li>
+<li>职责链模式</li>
+<li>状态模式</li>
+<li>观察者模式</li>
+<li>迭代器模式</li>
+<li>访问者模式</li>
+<li>备忘录模式</li>
+<li>解释器模式</li>
 </ul>
-<h4 id="文件-x2F-目录-所有者"><a href="#文件-x2F-目录-所有者" class="headerlink" title="文件&#x2F;目录 所有者"></a>文件&#x2F;目录 所有者</h4><p>一般为文件的创建者,谁创建了该文件,就自然的称为该文件的所有者</p>
+<p>以上 11 种行为型模式，除了模板方法模式和解释器模式是类行为型模式，其他的全部属于对象行为型模式。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述:"></a>概述:</h2><p>在面向对象程序设计过程中，程序员常常会遇到这种情况:设计一个系统时知道了算法所需的关键步骤，而且确定了这些步骤的执行顺序，但某些步骤的具体实现还未知，或者说某些步骤的实现与具体的环境相关。</p>
+<p>例如，去银行办理业务一般要经过以下4个流程:取号、排队、办理具体业务、对银行工作人员进行评分等，其中取号、排队和对银行工作人员进行评分的业务对每个客户是一样的，可以在父类中实现，但是办理具体业务却因人而异，它可能是存款、取款或者转账等，可以延迟到子类中实现。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h2><p>定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>模板方法(Template Method)模式包含以下主要角色:</p>
 <ul>
-<li>查看文件的所有者</li>
-</ul>
-<pre class=" language-code"><code class="language-code">指令:ls -ahl
-</code></pre>
+<li><p>抽象类:负责给出一个算法的轮廓和骨架。它由一个模板方法和若干个基本方法构成。</p>
 <ul>
-<li>修改文件的所有者</li>
+<li><p>模板方法:定义了算法的骨架，按某种顺序调用其包含的基本方法。</p>
+</li>
+<li><p>基本方法:是实现算法各个步骤的方法，是模板方法的组成部分。基本方法又可以分为三种:</p>
+</li>
+<li><p>抽象方法(Abstract Method) :一个抽象方法由抽象类声明、由其具体子类实现。</p>
+</li>
+<li><p>具体方法(Concrete Method) :一个具体方法由一个抽象类或具体类声明并实现，其子类可以进行覆盖也可以直接继承。</p>
+</li>
+<li><p>钩子方法(Hook Method) :在抽象类中已经实现，包括用于判断的逻辑方法和需要子类重写的空方法两种。一般钩子方法是用于判断的逻辑方法，这类方法名一般为isXxx，返回值类型为 boolean类型。</p>
+</li>
 </ul>
-<pre class=" language-code"><code class="language-code">指令:chown用户名 文件名
-案列:chown root txh
-</code></pre>
-<h4 id="组的创建"><a href="#组的创建" class="headerlink" title="组的创建"></a>组的创建</h4><pre class=" language-code"><code class="language-code">groupadd 组名
-</code></pre>
-<p>应用案例:</p>
-<p>创建一个组名tom</p>
-<pre class=" language-code"><code class="language-code">groupadd tom
-</code></pre>
-<p>将hello.txt加入到该组之中</p>
-<pre class=" language-code"><code class="language-code">useradd -g tom hello.txt
-</code></pre>
-<p>修改文件所在组</p>
-<p>基本指令:</p>
-<pre class=" language-code"><code class="language-code">chgrp 组名 文件名
-</code></pre>
-<h4 id="其它组"><a href="#其它组" class="headerlink" title="其它组"></a>其它组</h4><p>除文件的所有者和所在组的用户外,系统的其它用户都是文件的其它组</p>
-<h4 id="改变用户所在组"><a href="#改变用户所在组" class="headerlink" title="改变用户所在组"></a>改变用户所在组</h4><p>在添加用户时,可以指定将该用户添加到哪个组中,同样的用root的管理权限可以改变某个用户所在的组。</p>
-<ul>
-<li>改变用户所在组</li>
+</li>
+<li><p>具体子类(Concrete Class):实现抽象类中所定义的抽象方法和钩子方法，它们是一个顶级逻辑的组成步骤。</p>
+</li>
 </ul>
-<p>usermod -g 新组名 用户名</p>
-<p>usermod -d 目录名 用户名 改变该用户登录的初始目录。</p>
-<h3 id="权限的基本介绍"><a href="#权限的基本介绍" class="headerlink" title="权限的基本介绍"></a>权限的基本介绍</h3><p>ls -l命令的显示的内容如下:</p>
-<pre class=" language-code"><code class="language-code">[txh@VM-0-17-centos home]$ ls -l
-total 20
--rw-r--r--  1 root root    0 Apr 23 23:15 cat.txt
--rw-r--r--  1 root root   26 Apr 19 22:33 hello.txt
-drwxr-xr-x 11 txh  txh  4096 Apr 26 23:23 hexo
-drwxr-xr-x  2 root root 4096 Apr 26 19:49 kevintam
--rw-r--r--  1 root root  125 Apr 23 23:17 pc.tar.gz
--rw-r--r--  1 root root    0 Apr 23 23:16 pig.txt
-drwx------ 10 txh  txh  4096 Apr 14 14:13 txh
+<h2 id="案例实现"><a href="#案例实现" class="headerlink" title="案例实现:"></a>案例实现:</h2><p>【例】炒菜</p>
+<p>炒菜的步骤是固定的，分为倒油、热油、倒蔬菜、倒调料品、翻炒等步骤。现通过模板方法模式来用代码模拟。类图如下:</p>
+<img src="https://blog-1300811828.cos.ap-shanghai.myqcloud.com/uPic/image-20230330223154024.png" alt="image-20230330223154024" style="zoom:50%;" />
+
+<p>代码实现:</p>
+<p>定义一个模版方法,就是炒菜的模版方法，里面的放油、热油、放菜、放配料、翻炒等步骤。其中的放油、热油、翻炒等都可以写成基本方法，然后我们的放菜、放配料可以写成我们的抽象方法。然后定义一个模板方法，在里面面定义我们的实现算法的具体步骤。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> 模版方法<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author kevintam
+ * @version 1.0
+ * @title
+ * @description
+ * @createDate 2023/3/30
+ */</span>
+<span class="token comment" spellcheck="true">//炒菜的模版方法</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractClass</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">//倒油</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pourOil</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"倒油"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//第二步:热油是一样的，所以直接实现</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">heatOil</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"热油"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//第三步:倒蔬菜是不一样的(一个下包菜，一个是下菜心)</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">pourVegetable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//第四步:倒调味料是不一样</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">pourSauce</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//第五步:翻炒是一样的，所以直接实现</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">fry</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"炒啊炒啊炒到熟啊"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">cookProcess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">pourOil</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">heatOil</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pourVegetable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pourSauce</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">fry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
 </code></pre>
-<p>drwxr-xr-x 0 -9位说明</p>
-<ol>
-<li>第0位说明文件的类型（d,-,l,c,b）</li>
-</ol>
-<ul>
-<li>l是链接,相当于windows的快捷方式</li>
-<li>d是目录,相当于windows的文件夹</li>
-<li>c是字符设备文件,鼠标,键盘</li>
-<li>b是块设备，比如硬盘</li>
-<li>-表示是个普通文件</li>
-</ul>
-<ol start="2">
-<li>第1-3位确定所有者（该文件的所有者）拥有该文件的权限</li>
-<li>第4-6位确定所属组（同用户组的）拥有该文件的权限</li>
-<li>第7-9位确定其他用户拥有该文件的权限</li>
-</ol>
+<p>具体子类.继承我们的模版方法:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> 模版方法<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author kevintam
+ * @version 1.0
+ * @title
+ * @description
+ * @createDate 2023/3/30
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConcreteClass_BaoCai</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractClass</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pourVegetable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"下锅的蔬菜是包菜"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pourSauce</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"下锅的酱料是辣椒"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> 模版方法<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author kevintam
+ * @version 1.0
+ * @title
+ * @description
+ * @createDate 2023/3/30
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConcreteClass_CaiXin</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractClass</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pourVegetable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"下锅的蔬菜是菜心"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pourSauce</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"下锅的酱料是蒜蓉"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Client：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> 模版方法<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author kevintam
+ * @version 1.0
+ * @title
+ * @description
+ * @createDate 2023/3/30
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ConcreteClass_BaoCai concreteClassBaoCai <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteClass_BaoCai</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        concreteClassBaoCai<span class="token punctuation">.</span><span class="token function">cookProcess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ConcreteClass_CaiXin concreteClassCaiXin <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteClass_CaiXin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        concreteClassCaiXin<span class="token punctuation">.</span><span class="token function">cookProcess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>打印的步骤:</p>
+<pre class=" language-java"><code class="language-java">倒油
+热油
+下锅的蔬菜是包菜
+下锅的酱料是辣椒
+炒啊炒啊炒到熟啊
+倒油
+热油
+下锅的蔬菜是菜心
+下锅的酱料是蒜蓉
+炒啊炒啊炒到熟啊
+</code></pre>
 <blockquote>
-<p> rwx作用到文件</p>
+<p> 注意:为防止恶意操作，一般模板方法都加上 final 关键词。</p>
 </blockquote>
-<p>[r]代表可读(read):可以读取,查看</p>
-<p>[w]代表可写(write):可以修改,但是不代表可以删除该文件,删除一个文件的前提条件是对该文件所在的目录有写权限,才能删除该文件。</p>
-<p>[x]代表可执行(execute):可以被执行</p>
-<blockquote>
-<p> rwx作用到目录</p>
-</blockquote>
-<p>[r]代表可读（read）:可以读取,ls查看目录内容</p>
-<p>[w]代表可写（write）:可以修改,对目录内创建+删除+重命名目录</p>
-<p>[x]代表可执行（execute）:可以进行该目录</p>
-<p><strong>案列分析:</strong></p>
-<pre class=" language-code"><code class="language-code">-rw-r--r--  1 root root    0 Apr 23 23:15 cat.txt
--表示是一个普通文件
-rw- 表示文件拥有者权限是读和写
-r-- 表示同组的用户对该文件拥有读的权限
-r-- 其他的用户只有读的权限
-1  文件:表示是硬链接数 目录:表示子目录数+文件数
-(第一个root)root 表示文件的所有者
-(第二个root)root 表示文件的所在组
-0 文件的大小(字节)
-Apr 23 23:15 表示最后的修改日期
-cat.txt 文件名
-</code></pre>
-<h4 id="修改权限-chmod"><a href="#修改权限-chmod" class="headerlink" title="修改权限-chmod"></a>修改权限-chmod</h4><p>基本说明:</p>
-<p>通过chmod指令,可以修改文件或者目录的权限</p>
-<p>第一种方式:+、-、&#x3D;变更权限</p>
-<p>​     u:所有者 g:所在组 o:其他人 a:所有人(u、g、o的总和)</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点:"></a>优缺点:</h2><p><strong>优点:</strong></p>
+<p>提高代码复用性</p>
 <ul>
-<li>chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件&#x2F;目录</li>
-<li>chmod o+w 文件&#x2F;目录名</li>
-<li>chmod a-x 文件&#x2F;目录名</li>
+<li><p>将相同部分的代码放在抽象的父类中，而将不同的代码放入不同的子类中。</p>
+</li>
+<li><p>实现了反向控制</p>
+<p>通过一个父类调用其子类的操作，通过对子类的具体实现扩展不同的行为，实现了反向控制 ，并 符合“开闭原则”。</p>
+</li>
 </ul>
-<p><strong>注意:&#x3D;直接赋予 -除去权限 +增加权限</strong></p>
-<p>案列:给cat.txt文件的所有者读写执行的权限,在给是在组读执行权限,给其他组读执行权限</p>
-<pre class=" language-code"><code class="language-code">chmod u=rwx,g=rx,o=rx cat.txt
-</code></pre>
-<p>给cat.txt文件的所有者除去执行的权限,增加组写的权限</p>
-<pre class=" language-code"><code class="language-code">chmod u-x,g+w cat.txt
-</code></pre>
-<p>第二种方式:通过数字变更权限</p>
-<p>r&#x3D;4 w&#x3D;2 x&#x3D;1 rwx&#x3D;4+2+1&#x3D;7</p>
-<p>chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</p>
-<p>相当于chmod 751 文件目录名</p>
-<h4 id="修改文件所有者-chown"><a href="#修改文件所有者-chown" class="headerlink" title="修改文件所有者-chown"></a>修改文件所有者-chown</h4><p>chown newowner 文件&#x2F;目录 改变所有者</p>
-<p>chown newowner:newgroup 文件&#x2F;目录 改变所有者和所在组 -R 如果是目录 则使其下所有子文件或目录递归生效</p>
-<p>案例演示:</p>
-<p>请将&#x2F;home&#x2F;cat.txt 文件的所有者修改成txh</p>
-<pre class=" language-code"><code class="language-code">chown txh /home/cat.txt
-</code></pre>
-<h4 id="修改文件所在组-chgrp"><a href="#修改文件所在组-chgrp" class="headerlink" title="修改文件所在组-chgrp"></a>修改文件所在组-chgrp</h4><p>基本介绍:</p>
-<p>chgrp newgroup 文件&#x2F;目录 改变所在组</p>
-<p>案例演示:</p>
-<p>请将&#x2F;home&#x2F;cat.txt 文件的所在组修改成shaolin（少林）</p>
-<pre class=" language-code"><code class="language-code">chgrp shaolin /home/cat.txt
-</code></pre>
+<p>缺点:</p>
+<ul>
+<li><p>对每个不同的实现都需要定义一个子类，这会导致类的个数增加，系统更加庞大，设计也更加抽<br>  象。</p>
+</li>
+<li><p>父类中的抽象方法由子类实现，子类执行的结果会影响父类的结果，这导致一种反向的控制结构，它提高了代码阅读的难度。</p>
+</li>
+</ul>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h2><ul>
+<li>算法的整体步骤很固定，但其中个别部分易变时，这时候可以使用模板方法模式，将容易变的部分抽象出来，供子类实现。</li>
+<li>需要通过子类来决定父类算法中某个步骤是否执行，实现子类对父类的反向控制。</li>
+</ul>
 
                 
             </div>
@@ -565,7 +619,7 @@ cat.txt 文件名
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/04/27/linux%E7%BB%84%E7%9A%84%E4%BB%8B%E7%BB%8D/">http://example.com/2021/04/27/linux%E7%BB%84%E7%9A%84%E4%BB%8B%E7%BB%8D/</a>
+                    <a href="http://example.com/2021/04/26/%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95/">http://example.com/2021/04/26/%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -603,8 +657,8 @@ cat.txt 文件名
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">设计模式</span>
                                 </a>
                             
                         </div>
@@ -687,13 +741,13 @@ cat.txt 文件名
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/04/28/shell%E8%84%9A%E6%9C%AC/">
+                <a href="/2021/04/27/linux%E7%BB%84%E7%9A%84%E4%BB%8B%E7%BB%8D/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="shell脚本">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="linux组的介绍">
                         
-                        <span class="card-title">shell脚本</span>
+                        <span class="card-title">linux组的介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -704,7 +758,7 @@ cat.txt 文件名
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-27
                         </span>
                         <span class="publish-author">
                             
@@ -736,13 +790,13 @@ cat.txt 文件名
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/26/%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95/">
+                <a href="/2021/04/25/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="模板方法模式">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="适配器模式">
                         
-                        <span class="card-title">模板方法模式</span>
+                        <span class="card-title">适配器模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -753,7 +807,7 @@ cat.txt 文件名
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-25
                             </span>
                         <span class="publish-author">
                             
